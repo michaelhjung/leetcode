@@ -21,6 +21,37 @@ function plusMinus(arr) {
 }
 
 // ---------- 2. MINI-MAX SUM ---------- //
+function miniMaxSum(arr) {
+    let min = arr[0];
+    let max = arr[0];
+
+    arr.forEach(num => {
+        if (num < min) min = num;
+        if (num > max) max = num;
+    });
+
+    const minIndex = arr.indexOf(min);
+    const maxIndex = arr.indexOf(max);
+
+    let minList;
+    let maxList;
+
+    // TAKE OUT MAX #:
+    if (maxIndex === 0) minList = arr.slice(1);
+    else if (maxIndex === arr.length - 1) minList = arr.slice(0, maxIndex);
+    else minList = [...arr.slice(0, maxIndex), ...arr.slice(maxIndex + 1)];
+
+    // TAKE OUT MIN #:
+    if (minIndex === 0) maxList = arr.slice(1);
+    else if (minIndex === arr.length - 1) maxList = arr.slice(0, minIndex);
+    else maxList = [...arr.slice(0, minIndex), ...arr.slice(minIndex + 1)];
+
+    const sumMin = minList.reduce((prev, curr) => prev + curr, 0);
+    const sumMax = maxList.reduce((prev, curr) => prev + curr, 0);
+
+    console.log(`${sumMin} ${sumMax}`);
+}
+
 // ---------- 3. TIME CONVERSION ---------- //
 // ---------- 4. SPARSE ARRAYS ---------- //
 // ---------- 5. LONELY INTEGER ---------- //
