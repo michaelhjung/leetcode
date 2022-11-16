@@ -42,3 +42,10 @@
 
 
 // 9. PALINDROME NUMBER
+    // Given an integer x, return true if x is a palindrome, and false otherwise.
+    function isPalindrome(x) {
+        return x.toString() === x.toString().split('').reverse().join('');
+    }
+
+    // const x = 121;
+    // console.log(isPalindrome(x));
