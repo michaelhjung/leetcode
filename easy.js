@@ -101,3 +101,23 @@
 
     // const s = "DCXXI"; // 621
     // console.log(romanToInt(s));
+
+
+// 14. Longest Common Prefix
+    // Write a function to find the longest common prefix string amongst an array of strings.
+    // If there is no common prefix, return an empty string "".
+
+    function longestCommonPrefix(strs) {
+        const pointer = [0];
+        const firstWord = strs[0];
+        const common = [];
+
+        for (let i = 1; i < firstWord.length; i++) {
+            if (firstWord[pointer] === strs[i][pointer]) common.push()
+        }
+
+        return common.join('');
+    }
+
+    const strs = ["flower", "flow", "flight"];
+    console.log(longestCommonPrefix(strs));
