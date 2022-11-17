@@ -69,8 +69,17 @@ const isIsomorphic = (s, t) => {
 
 
 // 392. Is Subsequence
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const isSubsequence = (s, t) => {
+    let pointer = 0;
+    for (let i = 0; i < t.length; i++) {
+        if (t[i] === s[pointer]) pointer++;
+    }
+
+    if (pointer === s.length) return true;
+    else return false;
+};
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 3: Linked List ========== //
