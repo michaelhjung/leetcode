@@ -2,7 +2,7 @@
 // ==================== LEVEL 1 ==================== //
 // ================================================= //
 
-// ========== DAY 1 ========== //
+// ========== DAY 1: Prefix Sum ========== //
 // 1480. Running Sum of 1d Array
 const runningSum = (nums) => {
     let savedSum = 0;
@@ -20,11 +20,28 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY: O(1)
 
 // 724. Find Pivot Index
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const pivotIndex = (nums) => {
+    let pointer = 0;
+    let leftSum = 0;
+    let rightSum = nums.reduce((acc, curr) => acc + curr, 0) - nums[0];
+
+    while (pointer < nums.length) {
+        if (pointer > 0) {
+            leftSum += nums[pointer - 1];
+            rightSum -= nums[pointer];
+        }
+        if (leftSum === rightSum) return pointer;
+
+        pointer++;
+    }
+
+    return -1;
+}
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(1)
 
 
-// ========== DAY 2 ========== //
+// ========== DAY 2: String ========== //
 // 205. Isomorphic Strings
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -34,7 +51,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 3 ========== //
+// ========== DAY 3: Linked List ========== //
 // 21. Merge Two Sorted Lists
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -44,7 +61,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 4 ========== //
+// ========== DAY 4: Linked List ========== //
 // 876. Middle of the Linked List
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -54,7 +71,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 5 ========== //
+// ========== DAY 5: Greedy ========== //
 // 121. Best Time to Buy and Sell Stock
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -64,7 +81,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 6 ========== //
+// ========== DAY 6: Tree ========== //
 // 589. N-ary Tree Preorder Traversal
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -74,7 +91,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 7 ========== //
+// ========== DAY 7: Binary Search ========== //
 // 704. Binary Search
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -84,7 +101,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 8 ========== //
+// ========== DAY 8: Binary Search Tree ========== //
 // 98. Validate Binary Search Tree
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -94,7 +111,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 9 ========== //
+// ========== DAY 9: Graph/BFS/DFS ========== //
 // 733. Flood Fill
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -104,7 +121,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 10 ========== //
+// ========== DAY 10: Dynamic Programming ========== //
 // 509. Fibonacci Number
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -114,7 +131,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 11 ========== //
+// ========== DAY 11: Dynamic Programming ========== //
 // 746. Min Cost Climbing Stairs
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -124,7 +141,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 12 ========== //
+// ========== DAY 12: Sliding Window/Two Pointer ========== //
 // 438. Find All Anagrams in a String
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -134,7 +151,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 13 ========== //
+// ========== DAY 13: Hashmap ========== //
 // 1. Two Sum
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -144,7 +161,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 14 ========== //
+// ========== DAY 14: Stack ========== //
 // 844. Backspace String Compare
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
@@ -154,7 +171,7 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY:
 
 
-// ========== DAY 15 ========== //
+// ========== DAY 15: Heap ========== //
 // 1046. Last Stone Weight
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
