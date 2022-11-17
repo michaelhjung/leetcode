@@ -43,8 +43,30 @@ const pivotIndex = (nums) => {
 
 // ========== DAY 2: String ========== //
 // 205. Isomorphic Strings
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const isIsomorphic = (s, t) => {
+    const charMap = {};
+    const added = new Set();
+    let convertedWord = "";
+
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i];
+        let corrChar = t[i];
+
+        if (!charMap[char] && !added.has(corrChar)) {
+            charMap[char] = corrChar;
+            added.add(corrChar);
+            convertedWord += corrChar;
+        } else {
+            convertedWord += charMap[char];
+        }
+    }
+
+    if (convertedWord === t) return true;
+    else return false;
+};
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
+
 
 // 392. Is Subsequence
 // TIME COMPLEXITY:
