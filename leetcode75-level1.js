@@ -85,10 +85,40 @@ const isSubsequence = (s, t) => {
 // ========== DAY 3: Linked List ========== //
 // 21. Merge Two Sorted Lists
 const mergeTwoLists = (list1, list2) => {
+    if (list1 === null && list2 === null) return list1;
+    if (list1 === null && list2 !== null) return list2;
+    if (list2 === null && list1 !== null) return list1;
 
+    let head;
+    let other;
+    if (list1.val <= list2.val) {
+        head = list1;
+        other = list2;
+    }
+    else {
+        head = list2;
+        other = list1;
+    }
+    let curr = head;
+    let prev = null;
+
+    while (curr) {
+        if (!curr.next) break;
+        if (curr.next.val > other.val) {
+            const next = curr.next;
+            curr.next = other;
+            other = next;
+        }
+
+        curr = curr.next;
+    }
+
+    curr.next = other;
+
+    return head;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(1)
 
 // 206. Reverse Linked List
 // const reverseList = (head) => {
@@ -132,7 +162,7 @@ var reverseList = function (head) {
     return prev;
 };
 // TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(1)
 
 
 // ========== DAY 4: Linked List ========== //
