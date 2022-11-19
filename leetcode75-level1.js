@@ -115,8 +115,8 @@ const reverseList = (head) => {
 
     return newHead;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 4: Linked List ========== //
