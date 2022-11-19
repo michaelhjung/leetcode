@@ -91,29 +91,45 @@ const mergeTwoLists = (list1, list2) => {
 // SPACE COMPLEXITY:
 
 // 206. Reverse Linked List
-const reverseList = (head) => {
-    if (head === null || head.next === null) return head;
-    let memo = {};
+// const reverseList = (head) => {
+//     if (head === null || head.next === null) return head;
+//     let memo = {};
+//     let curr = head;
+//     let count = 0;
+//     let newHead;
+
+//     while (curr) {
+//         memo[count] = curr;
+
+//         if (curr.next) {
+//             count++;
+//         }
+//         curr = curr.next;
+//     }
+
+//     newHead = memo[count];
+//     for (let i = count; i >= 0; i--) {
+//         memo[i].next = memo[i - 1];
+//         if (i === 0) memo[i].next = null;
+//     }
+
+//     return newHead;
+// };
+// CLEARER SOLUTION:
+var reverseList = function (head) {
+
+    let prev = null;
     let curr = head;
-    let count = 0;
-    let newHead;
+
 
     while (curr) {
-        memo[count] = curr;
-
-        if (curr.next) {
-            count++;
-        }
-        curr = curr.next;
+        const next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
     }
 
-    newHead = memo[count];
-    for (let i = count; i >= 0; i--) {
-        memo[i].next = memo[i - 1];
-        if (i === 0) memo[i].next = null;
-    }
-
-    return newHead;
+    return prev;
 };
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
