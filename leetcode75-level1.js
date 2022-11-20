@@ -203,7 +203,6 @@ const middleNode = (head) => {
 // SPACE COMPLEXITY: O(1)
 
 
-
 // 142. Linked List Cycle II
 const detectCycle = (head) => {
     const seen = new Set();
@@ -223,6 +222,25 @@ const detectCycle = (head) => {
 
 // ========== DAY 5: Greedy ========== //
 // 121. Best Time to Buy and Sell Stock
+const maxProfit = (prices) => {
+    if (prices.length === 1) return 0;
+
+    let distance = {
+        val: 0,
+        minIdx : 0,
+        minVal: prices[0],
+        maxIdx: null,
+        maxVal: null
+    };
+
+
+    for (let i = 1; i < prices.length; i++) {
+        const price = prices[i];
+
+    }
+
+
+}
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 

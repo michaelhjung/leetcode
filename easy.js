@@ -103,21 +103,57 @@
     // console.log(romanToInt(s));
 
 
-// 14. Longest Common Prefix
-    // Write a function to find the longest common prefix string amongst an array of strings.
-    // If there is no common prefix, return an empty string "".
+// // 14. Longest Common Prefix
+//     // Write a function to find the longest common prefix string amongst an array of strings.
+//     // If there is no common prefix, return an empty string "".
 
-    function longestCommonPrefix(strs) {
-        const pointer = [0];
-        const firstWord = strs[0];
-        const common = [];
+//     function longestCommonPrefix(strs) {
+//         const pointer = [0];
+//         const firstWord = strs[0];
+//         const common = [];
 
-        for (let i = 1; i < firstWord.length; i++) {
-            if (firstWord[pointer] === strs[i][pointer]) common.push()
+//         for (let i = 1; i < firstWord.length; i++) {
+//             if (firstWord[pointer] === strs[i][pointer]) common.push()
+//         }
+
+//         return common.join('');
+//     }
+
+//     const strs = ["flower", "flow", "flight"];
+//     console.log(longestCommonPrefix(strs));
+
+
+// 914. X of a Kind in a Deck of Cards
+const hasLCD = (arr) => {
+    arr.sort((a, b) => a - b);
+    if (arr[0] < 2) return false;
+    let divider = 2;
+    for (let i = 2; i <= arr[0]; i++) {
+        if (arr[0] % i === 0) {
+            divider = i;
+            break;
         }
-
-        return common.join('');
     }
 
-    const strs = ["flower", "flow", "flight"];
-    console.log(longestCommonPrefix(strs));
+    for (let num of arr) {
+        if (num % divider !== 0) return false;
+    }
+
+    return true;
+}
+
+const hasGroupsSizeX = deck => {
+    if (deck.length <= 1) return false;
+
+    const group = {};
+    for (let card of deck) {
+        if (!group[card]) group[card] = 1;
+        else group[card]++;
+    }
+
+    const cardCounts = Object.values(group);
+    if (cardCounts.length === 1) return true;
+
+    if (hasLCD(cardCounts)) return true;
+    else return false;
+}
