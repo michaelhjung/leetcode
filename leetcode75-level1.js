@@ -168,24 +168,36 @@ const reverseList = (head) => {
 
 // ========== DAY 4: Linked List ========== //
 // 876. Middle of the Linked List
+// const middleNode = (head) => {
+//     let length = 0;
+//     let curr = head;
+
+//     while (curr) {
+//         length++;
+//         curr = curr.next;
+//     }
+
+//     let mid = Math.floor(length / 2);
+//     curr = head;
+//     length = 0;
+
+//     while (curr) {
+//         if (length === mid) return curr;
+//         length++;
+//         curr = curr.next;
+//     }
+// }
+// COOLER SOLUTION:
 const middleNode = (head) => {
-    let length = 0;
-    let curr = head;
+    let slow = head;
+    let fast = head;
 
-    while (curr) {
-        length++;
-        curr = curr.next;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
 
-    let mid = Math.floor(length / 2);
-    curr = head;
-    length = 0;
-
-    while (curr) {
-        if (length === mid) return curr;
-        length++;
-        curr = curr.next;
-    }
+    return slow;
 }
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(1)
