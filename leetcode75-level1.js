@@ -205,8 +205,20 @@ const middleNode = (head) => {
 
 
 // 142. Linked List Cycle II
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const detectCycle = (head) => {
+    const seen = new Set();
+
+    let curr = head;
+    while (curr) {
+        seen.add(curr);
+        if (seen.has(curr.next)) return curr.next;
+        curr = curr.next;
+    }
+
+    return null;
+};
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 5: Greedy ========== //
