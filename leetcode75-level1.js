@@ -120,6 +120,7 @@ const mergeTwoLists = (list1, list2) => {
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(1)
 
+
 // 206. Reverse Linked List
 // const reverseList = (head) => {
 //     if (head === null || head.next === null) return head;
@@ -146,7 +147,7 @@ const mergeTwoLists = (list1, list2) => {
 //     return newHead;
 // };
 // CLEARER SOLUTION:
-var reverseList = function (head) {
+const reverseList = (head) => {
 
     let prev = null;
     let curr = head;
@@ -167,8 +168,29 @@ var reverseList = function (head) {
 
 // ========== DAY 4: Linked List ========== //
 // 876. Middle of the Linked List
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const middleNode = (head) => {
+    let length = 0;
+    let curr = head;
+
+    while (curr) {
+        length++;
+        curr = curr.next;
+    }
+
+    let mid = Math.floor(length / 2);
+    curr = head;
+    length = 0;
+
+    while (curr) {
+        if (length === mid) return curr;
+        length++;
+        curr = curr.next;
+    }
+}
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(1)
+
+
 
 // 142. Linked List Cycle II
 // TIME COMPLEXITY:
