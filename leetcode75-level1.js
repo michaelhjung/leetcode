@@ -243,11 +243,28 @@ const maxProfit = (prices) => {
 
 
 // 409. Longest Palindrome
-const longestPalindrome = () => {
+const longestPalindrome = (s) => {
+    const letterCount = {};
+    for (let l of s) {
+        if (!letterCount[l]) letterCount[l] = 1;
+        else letterCount[l]++;
+    }
 
+    let evenCount = 0;
+    let oddCount = 0;
+    let addedOdd = false;
+    for (let count of Object.values(letterCount)) {
+        if (count % 2 === 0) evenCount += count;
+        else {
+            oddCount += (count - 1);
+            addedOdd = true;
+        }
+    }
+    if (addedOdd) oddCount++;
+    return evenCount + oddCount;
 }
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 6: Tree ========== //
