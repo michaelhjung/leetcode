@@ -124,22 +124,29 @@
 
 
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
-const hasLCD = (arr) => {
+const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
-    if (arr[0] < 2) return false;
-    let divider = 2;
-    for (let i = 2; i <= arr[0]; i++) {
-        if (arr[0] % i === 0) {
-            divider = i;
-            break;
+    let factors = {};
+    for (let i = 0; i < arr.length; i++) {
+        const currNum = arr[i];
+        let hasACommon = false;
+
+        for (let k = 2; k <= currNum; k++) {
+            if (currNum % k === 0 && !factors[currNum]) factors[currNum] = [k];
+            else if (currNum % k === 0 && factors[currNum]) factors[currNum].push(k);
         }
     }
 
-    for (let num of arr) {
-        if (num % divider !== 0) return false;
+    let factorsCount = {};
+    for (let group of Object.values(factors)) {
+        for (let factor of group) {
+            if (!factorsCount[factor]) factorsCount[factor] = 1;
+            else factorsCount[factor]++;
+        }
     }
 
-    return true;
+    if (Object.values(factorsCount).includes(arr.length)) return true;
+    else return false;
 }
 
 const hasGroupsSizeX = deck => {
@@ -154,6 +161,6 @@ const hasGroupsSizeX = deck => {
     const cardCounts = Object.values(group);
     if (cardCounts.length === 1) return true;
 
-    if (hasLCD(cardCounts)) return true;
+    if (hasGCF(cardCounts)) return true;
     else return false;
 }
