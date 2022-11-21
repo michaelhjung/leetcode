@@ -241,7 +241,11 @@ const maxProfit = (prices) => {
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
 
+
 // 409. Longest Palindrome
+const longestPalindrome = () => {
+
+}
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
