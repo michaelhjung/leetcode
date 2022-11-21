@@ -225,24 +225,21 @@ const detectCycle = (head) => {
 const maxProfit = (prices) => {
     if (prices.length === 1) return 0;
 
-    let distance = {
-        val: 0,
-        minIdx : 0,
-        minVal: prices[0],
-        maxIdx: null,
-        maxVal: null
-    };
+    let distances = {};
+    let smallest = prices[0];
 
-
-    for (let i = 1; i < prices.length; i++) {
+    for (let i = 0; i < prices.length; i++) {
         const price = prices[i];
-
+        if (!distances[price]) distances[price] = 0;
+        if (price < smallest) smallest = price;
+        if (price - smallest > distances[smallest]) distances[smallest] = price - smallest;
     }
 
-
+    const sortedDistances = Object.values(distances).sort((a, b) => b - a);
+    return sortedDistances[0];
 }
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 // 409. Longest Palindrome
 // TIME COMPLEXITY:
