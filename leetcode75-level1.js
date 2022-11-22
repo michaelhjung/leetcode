@@ -276,8 +276,31 @@ const preorder = (root, path=[]) => {
 // SPACE COMPLEXITY: O(N)
 
 // 102. Binary Tree Level Order Traversal
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const levelOrder = (root) => {
+    if (!root) return [];
+
+    const path = [];
+    const queue = [root];
+
+    while (queue.length) {
+        let currQueueLength = queue.length;
+        const level = [];
+
+        for (let i = 0; i < currQueueLength; i++) {
+            let currNode = queue.shift();
+            level.push(currNode.val);
+
+            if (currNode.left) queue.push(currNode.left);
+            if (currNode.right) queue.push(currNode.right);
+        }
+
+        path.push(level);
+    }
+
+    return path;
+};
+// TIME COMPLEXITY: O(N^2)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 7: Binary Search ========== //
