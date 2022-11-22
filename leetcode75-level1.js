@@ -67,7 +67,6 @@ const isIsomorphic = (s, t) => {
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
 
-
 // 392. Is Subsequence
 const isSubsequence = (s, t) => {
     let pointer = 0;
@@ -119,7 +118,6 @@ const mergeTwoLists = (list1, list2) => {
 };
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(1)
-
 
 // 206. Reverse Linked List
 // const reverseList = (head) => {
@@ -202,7 +200,6 @@ const middleNode = (head) => {
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(1)
 
-
 // 142. Linked List Cycle II
 const detectCycle = (head) => {
     const seen = new Set();
@@ -241,7 +238,6 @@ const maxProfit = (prices) => {
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
 
-
 // 409. Longest Palindrome
 const longestPalindrome = (s) => {
     const letterCount = {};
@@ -269,8 +265,15 @@ const longestPalindrome = (s) => {
 
 // ========== DAY 6: Tree ========== //
 // 589. N-ary Tree Preorder Traversal
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const preorder = (root, path=[]) => {
+    if (!root) return [];
+    path.push(root.val);
+    const children = root.children;
+    if (children) children.forEach(node => preorder(node, path));
+    return path;
+}
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 // 102. Binary Tree Level Order Traversal
 // TIME COMPLEXITY:
