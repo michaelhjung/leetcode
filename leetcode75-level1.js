@@ -331,8 +331,28 @@ const search = (nums, target) => {
 // SPACE COMPLEXITY: O(N)
 
 // 278. First Bad Version
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const solution = (isBadVersion) => {
+    /**
+    * @param {integer} n Total versions
+    * @return {integer} The first bad version
+    */
+    return function (n) {
+        let left = 1;
+        let right = n;
+
+        while (left <= right) {
+            const mid = left + Math.floor((right - left) / 2);
+
+            if (isBadVersion(mid)) {
+                if (isBadVersion(mid - 1)) right = mid - 1;
+                else return mid;
+            }
+            else left = mid + 1;
+        }
+    };
+};
+// TIME COMPLEXITY: O(LOG N)
+// SPACE COMPLEXITY: O(1)
 
 
 // ========== DAY 8: Binary Search Tree ========== //
