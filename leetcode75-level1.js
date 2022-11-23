@@ -265,7 +265,7 @@ const longestPalindrome = (s) => {
 
 // ========== DAY 6: Tree ========== //
 // 589. N-ary Tree Preorder Traversal
-const preorder = (root, path=[]) => {
+const preorder = (root, path = []) => {
     if (!root) return [];
     path.push(root.val);
     const children = root.children;
@@ -305,8 +305,30 @@ const levelOrder = (root) => {
 
 // ========== DAY 7: Binary Search ========== //
 // 704. Binary Search
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const search = (nums, target) => {
+    /* PSEUDOCODE:
+        Divide nums in half until target is found or array length is 1 and target is still not found.
+    */
+    let currNums = nums;
+    let begIndex = 0;
+
+    while (currNums.length >= 1) {
+        const midI = Math.floor(currNums.length / 2);
+
+        if (currNums[midI] === target) return begIndex + midI;
+        else if (currNums[midI] < target) {
+            currNums = currNums.slice(midI + 1);
+            begIndex += (midI + 1);
+        }
+        else {
+            currNums = currNums.slice(0, midI);
+        }
+    }
+
+    return -1;
+};
+// TIME COMPLEXITY: O(LOG N)
+// SPACE COMPLEXITY: O(N)
 
 // 278. First Bad Version
 // TIME COMPLEXITY:
