@@ -357,49 +357,21 @@ const solution = (isBadVersion) => {
 
 // ========== DAY 8: Binary Search Tree ========== //
 // 98. Validate Binary Search Tree
-// const isInOrder = (arr) => {
-//     const ascending = [...arr].sort((a, b) => a - b);
-//     const descending = [...arr].sort((a, b) => b - a);
+const isValidBST = (root) => {
 
-//     for (let i = 0; i < arr.length; i++) {
-//         if (arr[i] !== ascending[i] && arr[i] !== descending[i]) return false;
-//     }
+    function inOrder(node) {
+        if (!node) return [];
+        return [...inOrder(node.left), node.val, ...inOrder(node.right)]
+    }
 
-//     return true;
-// }
-// const dfs = (root, path=[root.val]) => {
-//     if (!isInOrder(path)) return false;
+    const sortedArr = inOrder(root);
 
-//     if (root.left) {
-//         return dfs(root.left, [...path, root.left.val]);
-//     }
-//     if (root.right) {
-//         return dfs(root.right, [...path, root.right.val]);
-//     }
+    for (let i = 0; i < sortedArr.length; i++) {
+        if (sortedArr[i + 1] <= sortedArr[i]) return false;
+    }
 
-//     return true;
-// }
-// const isValidBST = (root) => {
-//     /* Pseudocode:
-//         1. DFS and save the path
-//         2. If the path is not in the correct order, return false
-//         3. If all paths are correct, return true
-//     */
-//     const stack = [root];
-//     while (stack.length) {
-//         const node = stack.pop();
-//         if (node.left) {
-//             if (node.left.val >= node.val) return false;
-//             stack.push(node.left);
-//         }
-//         if (node.right) {
-//             if (node.right.val <= node.val) return false;
-//             stack.push(node.right)
-//         }
-//     }
-
-//     return dfs(root);
-// };
+    return true;
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
