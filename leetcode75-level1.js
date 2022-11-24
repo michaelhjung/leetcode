@@ -357,12 +357,106 @@ const solution = (isBadVersion) => {
 
 // ========== DAY 8: Binary Search Tree ========== //
 // 98. Validate Binary Search Tree
+// const isInOrder = (arr) => {
+//     const ascending = [...arr].sort((a, b) => a - b);
+//     const descending = [...arr].sort((a, b) => b - a);
+
+//     for (let i = 0; i < arr.length; i++) {
+//         if (arr[i] !== ascending[i] && arr[i] !== descending[i]) return false;
+//     }
+
+//     return true;
+// }
+// const dfs = (root, path=[root.val]) => {
+//     if (!isInOrder(path)) return false;
+
+//     if (root.left) {
+//         return dfs(root.left, [...path, root.left.val]);
+//     }
+//     if (root.right) {
+//         return dfs(root.right, [...path, root.right.val]);
+//     }
+
+//     return true;
+// }
+// const isValidBST = (root) => {
+//     /* Pseudocode:
+//         1. DFS and save the path
+//         2. If the path is not in the correct order, return false
+//         3. If all paths are correct, return true
+//     */
+//     const stack = [root];
+//     while (stack.length) {
+//         const node = stack.pop();
+//         if (node.left) {
+//             if (node.left.val >= node.val) return false;
+//             stack.push(node.left);
+//         }
+//         if (node.right) {
+//             if (node.right.val <= node.val) return false;
+//             stack.push(node.right)
+//         }
+//     }
+
+//     return dfs(root);
+// };
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
 // 235. Lowest Common Ancestor of a Binary Search Tree
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// const lowestCommonAncestor = (root, p, q) => {
+//     const stack1 = [[root]];
+//     const stack2 = [[root]];
+//     let path1;
+//     let path2;
+
+//     while (stack1.length) {
+//         const path = stack1.pop();
+//         const lastNode = path[path.length - 1];
+
+//         if (lastNode === p) {
+//             path1 = path;
+//             break;
+//         } else {
+//             let newPath = [...path];
+//             if (p.val < lastNode.val) newPath.push(lastNode.left);
+//             else newPath.push(lastNode.right);
+//             stack1.push(newPath);
+//         }
+//     }
+//     while (stack2.length) {
+//         const path = stack2.pop();
+//         const lastNode = path[path.length - 1];
+
+//         if (lastNode === q) {
+//             path2 = path;
+//             break;
+//         } else {
+//             let newPath = [...path];
+//             if (q.val < lastNode.val) newPath.push(lastNode.left);
+//             else newPath.push(lastNode.right);
+//             stack2.push(newPath);
+//         }
+//     }
+
+//     for (let i = path1.length - 1; i >= 0; i--) {
+//         for (let j = path2.length - 1; j >= 0; j--) {
+//             if (path1[i].val === path2[j].val) {
+//                 return path1[i];
+//             }
+//         }
+//     }
+// };
+// TIME COMPLEXITY: O(N^2)
+// SPACE COMPLEXITY: O(N)
+// BETTER SOLUTION:
+const lowestCommonAncestor = (root, p, q) => {
+    if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
+    else if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
+    else return root;
+}
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 9: Graph/BFS/DFS ========== //
