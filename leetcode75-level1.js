@@ -433,10 +433,49 @@ const lowestCommonAncestor = (root, p, q) => {
 
 // ========== DAY 9: Graph/BFS/DFS ========== //
 // 733. Flood Fill
+const findNeighbors = (matrix, node) => {
+    const neighbors = [];
+    const [row, col] = node;
+
+    if (row < matrix.length - 1) neighbors.push([row +1, col]);
+    if (row > 0) neighbors.push([row - 1, col]);
+    if (col < matrix[0].length - 1) neighbors.push([row, col + 1]);
+    if (col > 0) neighbors.push([row, col - 1]);
+
+    return neighbors;
+}
+const floodFill = (image, sr, sc, color) => {
+    const startColor = image[sr][sc];
+    const startNode = [sr, sc];
+    const queue = [startNode];
+    const visited = new Set();
+    visited.add(startNode.toString());
+    image[startNode[0]][startNode[1]] = color;
+
+    while (queue.length) {
+        const node = queue.pop();
+
+        const neighbors = findNeighbors(image, node);
+        neighbors.forEach(neighbor => {
+            if (!visited.has(neighbor.toString())) {
+                if (image[neighbor[0]][neighbor[1]] === startColor) {
+                    visited.add(neighbor.toString());
+                    image[neighbor[0]][neighbor[1]] = color;
+                    queue.unshift(neighbor);
+                }
+            }
+        });
+    }
+
+    return image;
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
 // 200. Number of Islands
+const numIslands = (grid) => {
+
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
