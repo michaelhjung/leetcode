@@ -469,15 +469,42 @@ const floodFill = (image, sr, sc, color) => {
 
     return image;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 // 200. Number of Islands
 const numIslands = (grid) => {
+    const visited = new Set();
+    let count = 0;
 
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            const node = [i, j];
+            if (visited.has(node.toString()) || grid[node[0]][node[1]] === "0") continue;
+            visited.add(node.toString());
+
+            const queue = [node];
+
+            while (queue.length) {
+                const currNode = queue.pop();
+                const neighbors = findNeighbors(grid, currNode);
+
+                neighbors.forEach(neighbor => {
+                    if (!visited.has(neighbor.toString()) && grid[neighbor[0]][neighbor[1]] === "1") {
+                        queue.unshift(neighbor);
+                    }
+                    visited.add(neighbor.toString());
+                });
+            }
+
+            count++;
+        }
+    }
+
+    return count;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// TIME COMPLEXITY: O(N^3)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 10: Dynamic Programming ========== //
