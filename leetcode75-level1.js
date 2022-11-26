@@ -437,7 +437,7 @@ const findNeighbors = (matrix, node) => {
     const neighbors = [];
     const [row, col] = node;
 
-    if (row < matrix.length - 1) neighbors.push([row +1, col]);
+    if (row < matrix.length - 1) neighbors.push([row + 1, col]);
     if (row > 0) neighbors.push([row - 1, col]);
     if (col < matrix[0].length - 1) neighbors.push([row, col + 1]);
     if (col > 0) neighbors.push([row, col - 1]);
@@ -509,8 +509,18 @@ const numIslands = (grid) => {
 
 // ========== DAY 10: Dynamic Programming ========== //
 // 509. Fibonacci Number
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const fib = (n, memo={}) => {
+    let result;
+
+    if (n === 0 || n === 1) return n;
+    else if (memo[n]) return memo[n];
+    else result = fib(n - 1, memo) + fib(n - 2, memo);
+    memo[n] = result;
+
+    return result;
+};
+// TIME COMPLEXITY: O(1)
+// SPACE COMPLEXITY: O(N)
 
 // 70. Climbing Stairs
 // TIME COMPLEXITY:
