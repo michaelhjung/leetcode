@@ -523,8 +523,18 @@ const fib = (n, memo={}) => {
 // SPACE COMPLEXITY: O(N)
 
 // 70. Climbing Stairs
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const climbStairs = (n, memo={}) => {
+    let result;
+
+    if (n <= 3) return n;
+    else if (memo[n]) return memo[n];
+    else result = climbStairs(n - 1, memo) + climbStairs(n - 2, memo);
+    memo[n] = result;
+
+    return result;
+};
+// TIME COMPLEXITY: O(1)
+// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 11: Dynamic Programming ========== //
