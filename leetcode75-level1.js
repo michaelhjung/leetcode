@@ -509,7 +509,7 @@ const numIslands = (grid) => {
 
 // ========== DAY 10: Dynamic Programming ========== //
 // 509. Fibonacci Number
-const fib = (n, memo={}) => {
+const fib = (n, memo = {}) => {
     let result;
 
     if (n === 0 || n === 1) return n;
@@ -523,7 +523,7 @@ const fib = (n, memo={}) => {
 // SPACE COMPLEXITY: O(N)
 
 // 70. Climbing Stairs
-const climbStairs = (n, memo={}) => {
+const climbStairs = (n, memo = {}) => {
     let result;
 
     if (n <= 3) return n;
@@ -539,8 +539,21 @@ const climbStairs = (n, memo={}) => {
 
 // ========== DAY 11: Dynamic Programming ========== //
 // 746. Min Cost Climbing Stairs
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// const minCostClimbingStairs = (cost) => {
+//     for (let i = cost.length - 3; i >= 0; i--) {
+//         cost[i] += Math.min(cost[i + 1], cost[i + 2]);
+//     }
+//     return Math.min(cost[0], cost[1]);
+// };
+// OR
+const minCostClimbingStairs = (cost) => {
+    for (let i = 2; i < cost.length; i++) {
+        cost[i] += Math.min(cost[i - 1], cost[i - 2]);
+    }
+    return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
+};
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(1)
 
 // 62. Unique Paths
 // TIME COMPLEXITY:
