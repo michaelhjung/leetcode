@@ -572,8 +572,24 @@ const minCostClimbingStairs = (cost) => {
 
 // ========== DAY 13: Hashmap ========== //
 // 1. Two Sum
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+// const twoSum = (nums, target) => {
+//     const seen = new Set();
+//     for (let i = 0; i < nums.length; i++) {
+//         let numNeeded = target - nums[i];
+//         if (seen.has(numNeeded)) return [i, nums.indexOf(numNeeded)];
+//         seen.add(nums[i]);
+//     }
+// };
+const twoSum = (nums, target) => {
+    const hashMap = {};
+    for (let i = 0; i < nums.length; i++) {
+        let numNeeded = target - nums[i];
+        if (hashMap.hasOwnProperty(numNeeded)) return [i, hashMap[numNeeded]];
+        hashMap[nums[i]] = i;
+    }
+};
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 // 299. Bulls and Cows
 // TIME COMPLEXITY:
