@@ -625,8 +625,24 @@ const backspaceCompare = (s, t) => {
 
 // ========== DAY 15: Heap ========== //
 // 1046. Last Stone Weight
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const lastStoneWeight = (stones) => {
+    while (stones.length > 1) {
+        const max1 = Math.max(...stones);
+        const i = stones.indexOf(max1);
+        stones.splice(i, 1);
+
+        const max2 = Math.max(...stones);
+        const j = stones.indexOf(max2);
+        stones.splice(j, 1);
+
+        if (max2 < max1) stones.push(max1 - max2);
+    }
+
+    return stones.length ? stones[0] : 0;
+};
+console.log(lastStoneWeight([2,7,4,1,8,1]));
+// TIME COMPLEXITY: O(N^2)
+// SPACE COMPLEXITY: O(1)
 
 // 692. Top K Frequent Words
 // TIME COMPLEXITY:
