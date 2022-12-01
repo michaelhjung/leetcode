@@ -188,6 +188,10 @@ const removeElement = (nums, val) => {
 };
 
 
+//58. Length of Last Word
+const lengthOfLastWord = s => s.trim().split(' ').reverse()[0].length;
+
+
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
 const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
