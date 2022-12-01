@@ -159,6 +159,23 @@ const isValid = (s) => {
 // const s = "(([]){})";
 // console.log(isValid(s));
 
+
+//26. Remove Duplicates from Sorted Array
+const removeDuplicates = nums => {
+    const seen = new Set();
+    for (let i = 0; i < nums.length; i++) {
+        if (seen.has(nums[i])) {
+            nums.splice(i, 1);
+            i--;
+        } else {
+            seen.add(nums[i]);
+        }
+    }
+
+    return nums.length;
+}
+
+
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
 const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
