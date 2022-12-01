@@ -598,8 +598,25 @@ const twoSum = (nums, target) => {
 
 // ========== DAY 14: Stack ========== //
 // 844. Backspace String Compare
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const backspaceCompare = (s, t) => {
+    const stackS = [];
+    const stackT = [];
+
+    for (let c of s) {
+        if (c === '#') stackS.pop();
+        else stackS.push(c);
+    }
+
+    for (let d of t) {
+        if (d === '#') stackT.pop();
+        else stackT.push(d);
+    }
+
+    if (stackS.join('') === stackT.join('')) return true;
+    else return false;
+};
+// TIME COMPLEXITY: O(N)
+// SPACE COMPLEXITY: O(N)
 
 // 394. Decode String
 // TIME COMPLEXITY:
