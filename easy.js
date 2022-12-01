@@ -176,6 +176,18 @@ const removeDuplicates = nums => {
 }
 
 
+//27. Remove Element
+const removeElement = (nums, val) => {
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === val) {
+            nums.splice(i, 1);
+            i--;
+        }
+    }
+    return nums.length;
+};
+
+
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
 const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
