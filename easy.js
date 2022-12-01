@@ -131,6 +131,34 @@ function romanToInt(s) {
     // console.log(longestCommonPrefix(strs));
 
 
+// 20. Valid Parentheses
+const isValid = (s) => {
+    let stack = []
+
+    let p = {
+      ')': '(',
+      ']': '[',
+      '}': '{'
+    }
+
+    for (let i of s) {
+      if ('([{'.includes(i)) {
+        stack.push(i)
+      } else if (p[i] === stack[stack.length - 1]) {
+        stack.pop()
+      }else{
+        stack.push(i)
+      }
+    }
+
+    if (stack.length)return false
+    return true
+}
+// const s = "()[]{}";
+// const s = "([)]";
+// const s = "(([]){})";
+// console.log(isValid(s));
+
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
 const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
