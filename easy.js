@@ -160,7 +160,7 @@ const isValid = (s) => {
 // console.log(isValid(s));
 
 
-//26. Remove Duplicates from Sorted Array
+// 26. Remove Duplicates from Sorted Array
 const removeDuplicates = nums => {
     const seen = new Set();
     for (let i = 0; i < nums.length; i++) {
@@ -188,7 +188,7 @@ const removeElement = (nums, val) => {
 };
 
 
-//58. Length of Last Word
+// 58. Length of Last Word
 const lengthOfLastWord = s => s.trim().split(' ').reverse()[0].length;
 
 
@@ -216,8 +216,34 @@ const plusOne = digits => {
 };
 
 
-//67. Add Binary
+// 67. Add Binary
 const addBinary = (a, b) => (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
+
+
+// 69. Sqrt(x)
+const mySqrt = x => {
+
+}
+
+// 83. Remove Duplicates from Sorted List
+const deleteDuplicates = head => {
+    let curr = head;
+    let tmp = null;
+    while (curr) {
+        if (tmp) {
+            if (curr.next === null || tmp.val !== curr.next.val) {
+                tmp.next = curr.next;
+                tmp = null;
+            }
+        } else {
+            if (curr.next && curr.val === curr.next.val) tmp = curr;
+        }
+
+        curr = curr.next;
+    }
+
+    return head;
+}
 
 
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
