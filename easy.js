@@ -246,6 +246,15 @@ const deleteDuplicates = head => {
 }
 
 
+// 88. Merge Sorted Array
+// BRUTE FORCE:
+const merge = (nums1, m, nums2, n) => {
+    nums1.splice(m, nums1.length - m);
+    nums1.push(...nums2);
+    return nums1.sort((a, b) => a - b);
+};
+
+
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
 const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
