@@ -4,6 +4,22 @@
 
 // ========== DAY 1: Implementation/Simulation ========== //
 // 202. Happy Number
+const isHappy = (n) => {
+    let nStr = n.toString();
+    let nSum = 0;
+    let obj = {};
+
+    while (true) {
+        nStr.split('').forEach(char => nSum += +char * +char);
+        if (obj[nSum]) return false;
+        if (nSum === 1) return true;
+        else {
+            obj[nSum] = nSum;
+            nStr = nSum.toString();
+            nSum = 0;
+        }
+    }
+};
 // 54. Spiral Matrix
 // 1706. Where Will the Ball Fail
 
