@@ -46,7 +46,7 @@ const spiralOrder = (matrix) => {
     return result;
 };
 
-// 1706. Where Will the Ball Fail
+// 1706. Where Will the Ball Fall
 const findBall = (grid) => {
     let m = grid.length,
         n = grid[0].length,
