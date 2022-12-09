@@ -20,7 +20,32 @@ const isHappy = (n) => {
         }
     }
 };
+
 // 54. Spiral Matrix
+const spiralOrder = (matrix) => {
+    const result = [];
+    let startRow = 0;
+    let endRow = matrix.length - 1;
+    let startCol = 0;
+    let endCol = matrix[0].length - 1;
+
+    while (startRow <= endRow && startCol <= endCol) {
+        for (let i = startCol; i <= endCol; i++) result.push(matrix[startRow][i]);
+        if (startRow === endRow) break;
+        for (let i = startRow + 1; i <= endRow; i++) result.push(matrix[i][endCol]);
+        if (startCol === endCol) break;
+        for (let i = endCol - 1; i >= startCol; i--) result.push(matrix[endRow][i]);
+        for (let i = endRow - 1; i > startRow; i--) result.push(matrix[i][startCol]);
+
+        startRow++;
+        endRow--;
+        startCol++;
+        endCol--;
+    }
+
+    return result;
+};
+
 // 1706. Where Will the Ball Fail
 
 
