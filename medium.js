@@ -8,7 +8,23 @@
     //   except the number 0 itself.
 
 
+// 48. Rotate Image
+const rotate = (matrix) => {
+    for (let row = 0; row < matrix.length; row++) {
+        for (let col = 0; col < matrix[row].length; col++) {
+            let tmp = matrix[row][col];
+            matrix[row][col] = matrix[col][row];
+            matrix[col][row] = tmp;
+            if (row === col) break;
+        }
+    }
+    matrix.forEach(row => row.reverse());
+    return matrix;
+};
+// console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]));
+
 // 198. House Robber
+
 const rob = (nums) => {
     if (!nums.length) return 0;
     if (nums.length === 1) return nums[0];
