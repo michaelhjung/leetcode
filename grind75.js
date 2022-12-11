@@ -12,6 +12,28 @@ const twoSum = (nums, target) => {
     }
 };
 // *Valid Parentheses*
+const isValid = (s) => {
+    if (s.length % 2 !== 0) return false;
+
+    const closing = {
+        ")": "(",
+        "}": "{",
+        "]": "["
+    }
+
+    const stack = [];
+
+    for (let char of s) {
+        if (char in closing) {
+            if (!stack.length) return false;
+            const open = stack.pop();
+            if (open !== closing[char]) return false;
+        } else stack.push(char);
+    }
+
+    if (stack.length) return false;
+    else return true;
+};
 // *Merge Two Sorted Lists
 // *Best Time to Buy and Sell Stock*
 // *Valid Palindrome
