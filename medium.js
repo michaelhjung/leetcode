@@ -52,6 +52,20 @@ const rob = (nums) => {
 };
 
 
+// 523. Continuous Subarray Sum
+// BRUTE FORCE:
+const checkSubarraySum = (nums, k) => {
+    for (let i = 0; i < nums.length; i++) {
+        let currSum = nums[i];
+        for (let j = i + 1; j < nums.length; j++) {
+            currSum += nums[j];
+            if (currSum % k === 0) return true;
+        }
+    }
+    return false;
+};
+
+
 // // 809. Expressive Words
 // const expressiveWords = (s, words) => {
 //     /* PSEUDOCODE:
