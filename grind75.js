@@ -3,6 +3,14 @@
 
 // ===== Week 1 ===== //
 // *Two Sum*
+const twoSum = (nums, target) => {
+    const map = new Map();
+    for (let i in nums) {
+        const difference = target - nums[i];
+        if (map.has(difference)) return [map.get(difference), i];
+        map.set(nums[i], i);
+    }
+};
 // *Valid Parentheses*
 // *Merge Two Sorted Lists
 // *Best Time to Buy and Sell Stock*
