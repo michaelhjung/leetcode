@@ -298,3 +298,24 @@ const searchInsert = (nums, target) => {
         if (target > nums[i]) return i + 1;
     }
 };
+
+
+// 2016. Maximum Difference Between Increasing Elements
+// const maximumDifference = (nums) => {
+//     let max = -1;
+//     for (let i = 0; i < nums.length; i++) {
+//         for (let j = i + 1; j < nums.length; j++) {
+//             if (nums[j] - nums[i] > max && nums[j] - nums[i] > 0) max = nums[j] - nums[i];
+//         }
+//     }
+//     return max;
+// };
+// BETTER SOLUTION:
+const maximumDifference = (nums) => {
+    let min = Infinity, max = -1;
+    for(let i in nums){
+        min = Math.min(nums[i], min);
+        max = Math.max(nums[i] - min, max)
+    }
+    return max ? max : -1;
+};

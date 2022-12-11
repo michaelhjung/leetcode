@@ -23,8 +23,8 @@ const rotate = (matrix) => {
 };
 // console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]));
 
-// 198. House Robber
 
+// 198. House Robber
 const rob = (nums) => {
     if (!nums.length) return 0;
     if (nums.length === 1) return nums[0];
