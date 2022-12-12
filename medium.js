@@ -123,3 +123,17 @@ const expressiveWords = (s, words) => {
 // const s = "abcd";
 // const words = ["abc"];
 // console.log(expressiveWords(s, words));
+
+
+// 881. Boats to Save People
+const numRescueBoats = (people, limit) => {
+    let count = 0;
+    people.sort((a, b) => b - a);
+    let left = 0, right = people.length - 1;
+    while (left <= right) {
+        if (people[left] + people[right] <= limit) right--;
+        left++;
+        count++
+    }
+    return count;
+};
