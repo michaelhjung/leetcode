@@ -24,37 +24,30 @@ const rotate = (matrix) => {
 // console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]));
 
 
-// 91. Decode Ways <== UNFINISHED
-// const isValidCode = (s) => {
-//     if (s.length > 2) return false;
-//     if (Number(s) < 1 || Number(s) > 26) return false;
-//     if (s[0] === "0") return false;
-//     return true;
-// }
-// const maxPossDecodings = (n, memo = {}) => {
-//     let result;
+// 91. Decode Ways
+const numDecodings = (s) => {
+    if (!s || s.length === 0) return 0;
+    if (s[0] === '0') return 0;
 
-//     if (n <= 3) return n;
-//     else if (memo[n]) return memo[n];
-//     else result = maxPossDecodings(n - 1, memo) + maxPossDecodings(n - 2, memo);
-//     memo[n] = result;
+    const table = new Array(s.length + 1).fill(0);
 
-//     return result;
-// }
-// const numDecodings = (s) => {
-//     let count = 0;
-//     if (s[0] === "0" || !s.length) return count;
+    table[0] = 1;
+    table[1] = 1;
 
-//     count += maxPossDecodings(s.length);
+    for (let i = 2; i <= s.length; i++) {
+        const lastOneDigit = Number(s.slice(i - 1, i));
+        if (lastOneDigit >= 1 && lastOneDigit <= 9) {
+            table[i] += table[i - 1];
+        }
 
-//     for (let i = 1; i < s.length; i++) {
-//         const twoDigitSubStr = s[i - 1] + s[i];
-//         if (!isValidCode(twoDigitSubStr)) count--;
-//         if (!isValidCode(s[i])) count -= 1 * (s.length - 1);
-//     }
+        const lastTwoDigits = Number(s.slice(i - 2, i));
+        if (lastTwoDigits >= 10 && lastTwoDigits <= 26) {
+            table[i] += table[i - 2];
+        }
+    }
 
-//     return count;
-// };
+    return table[s.length];
+};
 
 
 // 198. House Robber
