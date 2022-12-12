@@ -99,56 +99,27 @@ const checkSubarraySum = (nums, k) => {
 };
 
 
-// // 809. Expressive Words
-// const expressiveWords = (s, words) => {
-//     /* PSEUDOCODE:
-//         1. compare each word with a copy of s.
-//         2. splice every letter that are in both
-//         3. the word should have nothing left
-//         4. the s should only have letters that are 2 or more left
-//     */
-//     let res = 0;
+// 809. Expressive Words <== UNFINISHED
+const expressiveWords = (s, words) => {
+    let count = 0;
+    const splitS = [];
+    let tmp = { startI: 0, letter: s[0] };
+    for (let i = 1; i < s.length; i++) {
+        if ((tmp.letter !== null && s[i] !== tmp.letter) || i === s.length - 1) {
+            const section = s.slice(tmp.startI, i);
+            splitS.push(section);
 
-//     for (let word of words) {
-//         const copySarr = s.split('');
-//         const wordArr = word.split('');
+            tmp.startI = i;
+            tmp.letter = s[i];
+        }
+    }
 
-//         let wrongLetter = false;
-//         const set = new Set();
-//         for (let letter of wordArr) set.add(letter);
-//         for (let letter of copySarr) {
-//             if (!set.has(letter)) wrongLetter = true;
-//         }
-//         if (wrongLetter) break;
 
-//         for (let i = wordArr.length - 1; i >= 0; i--) {
-//             let letter = wordArr[i];
-//             let sIndex = copySarr.indexOf(letter);
-//             if (sIndex !== -1) {
-//                 copySarr.splice(sIndex, 1);
-//                 wordArr.splice(i, 1);
-//             }
-//         }
 
-//         if (wordArr.length === 0 && copySarr.length !== 1) {
-//             let onlyOneLetter = false;
-//             for (let i = 0; i < copySarr.length; i++) {
-//                 const prevLetter = copySarr[i - 1];
-//                 const currLetter = copySarr[i];
-//                 const nextLetter = copySarr[i + 1];
 
-//                 if ((prevLetter && prevLetter !== currLetter) && (nextLetter && nextLetter !== currLetter)) {
-//                     onlyOneLetter = true;
-//                 }
-//             }
-//             if (!onlyOneLetter) res++;
-//         }
-//     }
-
-//     return res;
-// };
-// // const s = "heeellooo";
-// // const words = ["hello", "hi", "helo"];
+};
+// const s = "heeellooo";
+// const words = ["hello", "hi", "helo"];
 // const s = "abcd";
 // const words = ["abc"];
 // console.log(expressiveWords(s, words));
