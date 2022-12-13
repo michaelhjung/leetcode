@@ -78,6 +78,26 @@ const rob = (nums) => {
 };
 
 
+// 443. String Compression
+const compress = (chars) => {
+    if (!chars.length) return 0;
+    let letter = chars[0], count = 1, pointer = 0;
+    for (let i = 1; i <= chars.length; i++) {
+        if (chars[i] !== letter) {
+            if (count > 1) {
+                const numStr = count.toString();
+                for (let d = 0; d < numStr.length; d++) chars[++pointer] = numStr[d];
+            }
+            pointer++;
+            letter = chars[i];
+            count = 1;
+        }
+        else count++;
+    }
+    return pointer;
+};
+
+
 // 523. Continuous Subarray Sum
 // BRUTE FORCE:
 const checkSubarraySum = (nums, k) => {
