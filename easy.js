@@ -255,6 +255,10 @@ const merge = (nums1, m, nums2, n) => {
 };
 
 
+// 191. Number of 1 Bits
+const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
+
+
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
 const hasGCF = (arr) => {
     arr.sort((a, b) => a - b);
