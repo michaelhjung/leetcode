@@ -1,11 +1,30 @@
 // 2. ADD TWO NUMBERS
-// You are given two non-empty linked lists representing two non-negative integers.
-// The digits are stored in reverse order, and each of their nodes contains
-//   a single digit.
-// Add the two numbers and return the sum as a linked list.
+const addTwoNumbers = (l1, l2) => {
+    let n1 = "";
+    let n2 = "";
 
-// You may assume the two numbers do not contain any leading zero,
-//   except the number 0 itself.
+    let curr = l1;
+    while (curr) {
+        n1 = curr.val + n1;
+        curr = curr.next;
+    }
+    curr = l2;
+    while (curr) {
+        n2 = curr.val + n2;
+        curr = curr.next;
+    }
+
+    const sum = BigInt(n1) + BigInt(n2);
+    const sumStr = sum.toString();
+
+    const head = new ListNode(Number(sumStr[sumStr.length - 1]));
+    let currNode = head;
+    for (let i = sumStr.length - 2; i >= 0; i--) {
+        currNode.next = new ListNode(Number(sumStr[i]));
+        currNode = currNode.next;
+    }
+    return head;
+};
 
 
 // 15. 3Sum
