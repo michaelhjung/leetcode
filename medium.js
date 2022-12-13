@@ -105,6 +105,21 @@ const rob = (nums) => {
 };
 
 
+// 204. Count Primes
+const countPrimes = (n) => {
+    const seen = new Set();
+    let primeCount = 0;
+    for (let i = 2; i < n; i++) {
+        if (seen.has(i)) continue;
+        primeCount++;
+        for (let j = i ** 2; j < n; j += i) {
+            seen.add(j);
+        }
+    }
+    return primeCount;
+};
+
+
 // 443. String Compression
 const compress = (chars) => {
     if (!chars.length) return 0;
