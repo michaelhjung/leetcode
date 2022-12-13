@@ -8,6 +8,33 @@
 //   except the number 0 itself.
 
 
+// 15. 3Sum
+const threeSum = (nums) => {
+    const res = [];
+    nums.sort((a, b) => a - b);
+    const set = new Set();
+
+    for (let i = 0; i < nums.length; i++) {
+        const curr = nums[i];
+        let left = i + 1;
+        let right = nums.length - 1;
+
+        while (left < right) {
+            if (curr + nums[left] + nums[right] === 0) {
+                if (!set.has([curr, nums[left], nums[right]].toString())) res.push([curr, nums[left], nums[right]]);
+                set.add([curr, nums[left], nums[right]].toString());
+                left++;
+                right--;
+            }
+            else if (curr + nums[left] + nums[right] > 0) right--;
+            else if (curr + nums[left] + nums[right] < 0) left++;
+        }
+    }
+
+    return res;
+};
+
+
 // 48. Rotate Image
 const rotate = (matrix) => {
     for (let row = 0; row < matrix.length; row++) {
@@ -114,9 +141,6 @@ const change = (amount, coins) => {
 
     return dp[amount];
 };
-const amount = 5;
-const coins = [1,2,5];
-console.log(change(amount, coins));
 
 
 // 523. Continuous Subarray Sum
