@@ -98,6 +98,27 @@ const compress = (chars) => {
 };
 
 
+// 518. Coin Change II
+const change = (amount, coins) => {
+    if (amount === 0) return 1;
+    if (coins.length === 0) return 0;
+
+    const dp = Array(amount + 1).fill(0);
+    dp[0] = 1;
+
+    for (let coin of coins) {
+        for (let j = coin; j <= amount; j++) {
+            dp[j] += dp[j - coin];
+        }
+    }
+
+    return dp[amount];
+};
+const amount = 5;
+const coins = [1,2,5];
+console.log(change(amount, coins));
+
+
 // 523. Continuous Subarray Sum
 // BRUTE FORCE:
 const checkSubarraySum = (nums, k) => {
