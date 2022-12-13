@@ -132,6 +132,20 @@ const numRescueBoats = (people, limit) => {
 };
 
 
+// 1010. Pairs of Songs With Total Durations Divisible by 60
+const numPairsDivisibleBy60 = (time) => {
+    let count = 0;
+    const map = {};
+    for (let t of time) {
+        const remainder = t % 60;
+        const needed = (60 - remainder) % 60;
+        count += map[needed] ? map[needed] : 0;
+        map[remainder] = map[remainder] ? map[remainder] + 1 : 1;
+    }
+    return count;
+};
+
+
 // 1492. The kth Factor of n
 const kthFactor = (n, k) => {
     const factors = [];
