@@ -116,6 +116,17 @@ const floodFill = (image, sr, sc, color) => {
 // *Lowest Common Ancestor of a Binary Search Tree*
 // Balanced Binary Tree
 // *Linked List Cycle*
+const hasCycle = head => {
+    let curr = head;
+    const seen = new Set();
+    while (curr) {
+        if (seen.has(curr)) return true;
+        seen.add(curr);
+        curr = curr.next;
+    }
+
+    return false;
+};
 // Implement Queue using Stacks
 
 
