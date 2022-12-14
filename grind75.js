@@ -12,7 +12,7 @@ const twoSum = (nums, target) => {
     }
 };
 // *Valid Parentheses*
-const isValid = (s) => {
+const isValid = s => {
     if (s.length % 2 !== 0) return false;
 
     const closing = {
@@ -47,6 +47,17 @@ const mergeTwoLists = (l1, l2) => {
     }
 };
 // *Best Time to Buy and Sell Stock*
+const maxProfit = prices => {
+    let profit = 0;
+    let min = prices[0];
+
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] < min) min = prices[i];
+        else if (prices[i] - min > profit) profit = prices[i] - min;
+    }
+
+    return profit;
+};
 // *Valid Palindrome
 // *Invert Binary Tree*
 // *Valid Anagram*
