@@ -75,6 +75,44 @@ const isPalindrome = s => {
 // *Valid Anagram*
 // Binary Search
 // Flood Fill
+const findNeighbors = (node, image) => {
+    const neighbors = [];
+    const row = node[0];
+    const col = node[1];
+
+    // up
+    if (row - 1 >= 0) neighbors.push([row - 1, col]);
+    // down
+    if (row + 1 <= image.length - 1) neighbors.push([row + 1, col]);
+    // left
+    if (col - 1 >= 0) neighbors.push([row, col - 1]);
+    // right
+    if (col + 1 <= image[0].length - 1) neighbors.push([row, col + 1]);
+
+    return neighbors;
+}
+const floodFill = (image, sr, sc, color) => {
+    const start = image[sr][sc];
+    if (start === color) return image;
+
+    const stack = [[sr, sc]];
+    const seen = new Set();
+
+    while (stack.length) {
+        const currNode = stack.pop();
+        image[currNode[0]][currNode[1]] = color;
+        const neighbors = findNeighbors(currNode, image);
+
+        neighbors.forEach(neighbor => {
+            if (!seen.has(neighbor.toString()) && image[neighbor[0]][neighbor[1]] === start) {
+                stack.push(neighbor);
+            }
+            seen.add(neighbor.toString());
+        });
+    }
+
+    return image;
+};
 // *Lowest Common Ancestor of a Binary Search Tree*
 // Balanced Binary Tree
 // *Linked List Cycle*
