@@ -59,6 +59,18 @@ const maxProfit = prices => {
     return profit;
 };
 // *Valid Palindrome
+const isPalindrome = s => {
+    const regEx = /^[0-9a-z]+$/;
+    const stack = [];
+    for (let c of s) if (c.toLowerCase().match(regEx)) {
+        stack.push(c.toLowerCase());
+    }
+    for (let i = 0, j = stack.length - 1; i < j; i++, j--) {
+        if (stack[i] !== stack[j]) return false;
+    }
+
+    return true;
+};
 // *Invert Binary Tree*
 // *Valid Anagram*
 // Binary Search
