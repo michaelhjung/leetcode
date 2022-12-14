@@ -72,6 +72,19 @@ const isPalindrome = s => {
     return true;
 };
 // *Invert Binary Tree*
+const invertTree = root => {
+    if (!root) return null;
+
+    let tmp = root.left;
+    root.left = root.right;
+    root.right = tmp;
+    root.left
+
+    if (root.left) invertTree(root.left);
+    if (root.right) invertTree(root.right);
+
+    return root;
+};
 // *Valid Anagram*
 // Binary Search
 // Flood Fill
