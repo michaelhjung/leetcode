@@ -78,7 +78,6 @@ const invertTree = root => {
     let tmp = root.left;
     root.left = root.right;
     root.right = tmp;
-    root.left
 
     if (root.left) invertTree(root.left);
     if (root.right) invertTree(root.right);
@@ -87,6 +86,22 @@ const invertTree = root => {
 };
 // *Valid Anagram*
 // Binary Search
+const search = (nums, target) => {
+    if (!nums.length || (nums.length === 1 && nums[0] !== target)) return -1;
+
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        if (nums[mid] === target) return mid;
+
+        if (target > nums[mid]) left = mid + 1;
+        else right = mid - 1;
+    }
+
+    return -1;
+};
 // Flood Fill
 const findNeighbors = (node, image) => {
     const neighbors = [];
