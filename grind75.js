@@ -175,6 +175,24 @@ const lowestCommonAncestor = (root, p, q) => {
 };
 
 // Balanced Binary Tree
+const height = root => {
+    if (!root) return 0;
+    else {
+        let l = 1 + height(root.left);
+        let r = 1 + height(root.right);
+        if (r > l) return r;
+        else return l;
+    }
+}
+const isBalanced = function(root) {
+    if (!root) return true;
+    else {
+        let leftHeight = height(root.left);
+        let rightHeight = height(root.right);
+        let res = Math.abs(leftHeight - rightHeight) <= 1;
+        return res && isBalanced(root.left) && isBalanced(root.right);
+    }
+};
 
 // *Linked List Cycle*
 const hasCycle = head => {
