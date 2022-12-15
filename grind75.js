@@ -11,6 +11,7 @@ const twoSum = (nums, target) => {
         map.set(nums[i], i);
     }
 };
+
 // *Valid Parentheses*
 const isValid = s => {
     if (s.length % 2 !== 0) return false;
@@ -34,6 +35,7 @@ const isValid = s => {
     if (stack.length) return false;
     else return true;
 };
+
 // *Merge Two Sorted Lists
 const mergeTwoLists = (l1, l2) => {
     if (!l1 || !l2) return l1 ? l1 : l2;
@@ -46,6 +48,7 @@ const mergeTwoLists = (l1, l2) => {
         return l2;
     }
 };
+
 // *Best Time to Buy and Sell Stock*
 const maxProfit = prices => {
     let profit = 0;
@@ -58,6 +61,7 @@ const maxProfit = prices => {
 
     return profit;
 };
+
 // *Valid Palindrome
 const isPalindrome = s => {
     const regEx = /^[0-9a-z]+$/;
@@ -71,6 +75,7 @@ const isPalindrome = s => {
 
     return true;
 };
+
 // *Invert Binary Tree*
 const invertTree = root => {
     if (!root) return null;
@@ -84,7 +89,24 @@ const invertTree = root => {
 
     return root;
 };
+
 // *Valid Anagram*
+const isAnagram = (s, t) => {
+    if (s.length !== t.length) return false;
+    const sCount = {};
+    const tCount = {};
+    for (let i = 0; i < s.length; i++) {
+        if (sCount[s[i]]) sCount[s[i]]++;
+        else sCount[s[i]] = 1;
+
+        if (tCount[t[i]]) tCount[t[i]]++;
+        else tCount[t[i]] = 1;
+    }
+
+    if (Object.entries(sCount).sort().toString() === Object.entries(tCount).sort().toString()) return true;
+    else return false;
+};
+
 // Binary Search
 const search = (nums, target) => {
     if (!nums.length || (nums.length === 1 && nums[0] !== target)) return -1;
@@ -102,6 +124,7 @@ const search = (nums, target) => {
 
     return -1;
 };
+
 // Flood Fill
 const findNeighbors = (node, image) => {
     const neighbors = [];
@@ -141,8 +164,11 @@ const floodFill = (image, sr, sc, color) => {
 
     return image;
 };
+
 // *Lowest Common Ancestor of a Binary Search Tree*
+
 // Balanced Binary Tree
+
 // *Linked List Cycle*
 const hasCycle = head => {
     let curr = head;
@@ -155,6 +181,7 @@ const hasCycle = head => {
 
     return false;
 };
+
 // Implement Queue using Stacks
 
 
