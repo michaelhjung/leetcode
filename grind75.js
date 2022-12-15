@@ -166,6 +166,13 @@ const floodFill = (image, sr, sc, color) => {
 };
 
 // *Lowest Common Ancestor of a Binary Search Tree*
+const lowestCommonAncestor = (root, p, q) => {
+    while (root) {
+        if ((root.val >= p.val && root.val <= q.val) || (root.val <= p.val && root.val >= q.val)) return root;
+        else if (root.val < p.val || root.val < q.val) root = root.right;
+        else root = root.left;
+    }
+};
 
 // Balanced Binary Tree
 
