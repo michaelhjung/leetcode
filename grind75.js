@@ -362,7 +362,19 @@ const containsDuplicate = nums => {
     return false;
 };
 
+
 // *Maximum Subarray*
+const maxSubArray = nums => {
+    if (nums.length === 1) return nums[0];
+    let max = -Infinity;
+    let tmp = 0;
+    for (let num of nums) {
+        tmp = tmp < 0 ? 0 : tmp;
+        tmp += num;
+        max = Math.max(max, tmp);
+    }
+    return max;
+};
 
 
 // ===== Week 3 ===== //
