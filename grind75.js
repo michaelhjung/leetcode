@@ -230,6 +230,21 @@ const isBadVersion = () => {
 }
 
 // Ransom Note
+const canConstruct = (ransomNote, magazine) => {
+    const charCount = {};
+    for (let c of magazine) {
+        if (c in charCount) charCount[c]++;
+        else charCount[c] = 1;
+    }
+
+    for (let c of ransomNote) {
+        if (!charCount[c] || charCount[c] < 1) return false;
+        else charCount[c]--;
+    }
+
+    return true;
+};
+
 // *Climbing Stairs*
 // Longest Palindrome
 // Reverse Linked List
