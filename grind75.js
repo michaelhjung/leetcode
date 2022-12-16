@@ -325,7 +325,7 @@ const diameterOfBinaryTree = root => {
 };
 
 // Middle of the Linked List
-const middleNode = function (head) {
+const middleNode = head => {
     const arr = [];
     while (head) {
         arr.push(head);
@@ -336,6 +336,22 @@ const middleNode = function (head) {
 };
 
 // *Maximum Depth of Binary Tree*
+const maxDepth = root => {
+    if (!root) return root;
+    let max = 0;
+
+    const dfs = root => {
+        if (!root) return 0;
+        let left = dfs(root.left);
+        let right = dfs(root.right);
+        max = Math.max(left, right);
+        return 1 + Math.max(left, right);
+    }
+    dfs(root);
+
+    return max + 1;
+};
+
 // *Contains Duplicate*
 // *Maximum Subarray*
 
