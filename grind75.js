@@ -184,7 +184,7 @@ const height = root => {
         else return l;
     }
 }
-const isBalanced = function(root) {
+const isBalanced = function (root) {
     if (!root) return true;
     else {
         let leftHeight = height(root.left);
@@ -310,6 +310,20 @@ const majorityElement = nums => nums.sort((a, b) => a - b)[Math.floor(nums.lengt
 const addBinary = (a, b) => (BigInt(`0b${a}`) + BigInt(`0b${b}`)).toString(2);
 
 // Diameter of Binary Tree
+const diameterOfBinaryTree = root => {
+    let max = 0;
+    const dfs = root => {
+        if (!root) return 0;
+        let left = dfs(root.left);
+        let right = dfs(root.right);
+
+        max = Math.max(max, left + right);
+        return Math.max(left, right) + 1;
+    }
+    dfs(root);
+    return max;
+};
+
 // Middle of the Linked List
 // *Maximum Depth of Binary Tree*
 // *Contains Duplicate*
