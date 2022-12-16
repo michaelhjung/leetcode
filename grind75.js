@@ -304,7 +304,7 @@ const reverseList = head => {
 };
 
 // Majority Element
-const majorityElement = nums => nums.sort((a,b)=>a-b)[Math.floor(nums.length / 2)] || nums[0];
+const majorityElement = nums => nums.sort((a, b) => a - b)[Math.floor(nums.length / 2)] || nums[0];
 
 // Add Binary
 // Diameter of Binary Tree
