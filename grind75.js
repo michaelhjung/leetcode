@@ -246,6 +246,22 @@ const canConstruct = (ransomNote, magazine) => {
 };
 
 // *Climbing Stairs*
+const climbStairs = n => {
+    if (n <= 3) return n;
+
+    const table = new Array(n + 1).fill();
+    table[0] = 0;
+    table[1] = 1;
+    table[2] = 2;
+    table[3] = 3;
+
+    for (let i = 4; i <= n; i++) {
+        table[i] = table[i - 1] + table[i - 2];
+    }
+
+    return table[n];
+};
+
 // Longest Palindrome
 // Reverse Linked List
 // Majority Element
