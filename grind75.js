@@ -288,6 +288,21 @@ const longestPalindrome = s => {
 };
 
 // Reverse Linked List
+const reverseList = head => {
+    if (!head || !head.next) return head;
+
+    let prev = null;
+    let curr = head;
+    while (curr.next) {
+        const oldNext = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = oldNext;
+    }
+    curr.next = prev;
+    return curr;
+};
+
 // Majority Element
 // Add Binary
 // Diameter of Binary Tree
