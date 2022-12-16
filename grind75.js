@@ -263,6 +263,30 @@ const climbStairs = n => {
 };
 
 // Longest Palindrome
+const longestPalindrome = s => {
+    const charCount = {};
+
+    for (let c of s) {
+        if (c in charCount) charCount[c]++;
+        else charCount[c] = 1;
+    }
+
+    const cCountList = Object.values(charCount).sort((a, b) => a - b);
+    let l = 0;
+    let firstOddAdded = false;
+
+    for (let i = 0; i < cCountList.length; i++) {
+        if (!firstOddAdded && cCountList[i] % 2 !== 0) {
+            l += cCountList[i];
+            firstOddAdded = true;
+        }
+        else if (firstOddAdded && cCountList[i] % 2 !== 0) l += (cCountList[i] - 1);
+        else l += cCountList[i];
+    }
+
+    return l;
+};
+
 // Reverse Linked List
 // Majority Element
 // Add Binary
