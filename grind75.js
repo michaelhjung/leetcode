@@ -502,6 +502,26 @@ const threeSum = nums => {
 }
 
 // *Binary Tree Level Order Traversal*
+const levelOrder = root => {
+    if (!root) return [];
+    const res = [];
+
+    const queue = [root];
+    while (queue.length) {
+        const currQLength = queue.length;
+        const level = [];
+        for (let i = 0; i < currQLength; i++) {
+            const node = queue.pop();
+            level.push(node.val);
+            if (node.left) queue.unshift(node.left);
+            if (node.right) queue.unshift(node.right);
+        }
+        res.push(level);
+    }
+
+    return res;
+};
+
 // *Clone Graph*
 // Evaluate Reverse Polish Notation
 
