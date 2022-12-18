@@ -475,7 +475,32 @@ const lengthOfLongestSubstring = s => {
 
     return max;
 };
+
 // *3Sum*
+const threeSum = nums => {
+    nums.sort((a,b) => a-b);
+    const set = new Set();
+    const res = [];
+    for (let i = 0; i < nums.length; i++) {
+        const curr = nums[i];
+        let left = i + 1;
+        let right = nums.length - 1;
+
+        while (left < right) {
+            if (curr + nums[left] + nums[right] === 0) {
+                if (!set.has([curr, nums[left], nums[right]].toString())) res.push([curr, nums[left], nums[right]]);
+                set.add([curr, nums[left], nums[right]].toString());
+                left++;
+                right--;
+            }
+            else if (curr + nums[left] + nums[right] > 0) right--;
+            else left++;
+        }
+    }
+
+    return res;
+}
+
 // *Binary Tree Level Order Traversal*
 // *Clone Graph*
 // Evaluate Reverse Polish Notation
