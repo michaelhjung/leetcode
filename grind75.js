@@ -404,57 +404,77 @@ const insert = (intervals, newInterval) => {
 };
 
 // 01 Matrix
-// BRUTE FORCE:
-const findMatNeighbors = (node, image) => {
-    const neighbors = [];
-    const row = node[0];
-    const col = node[1];
+// // BRUTE FORCE:
+// const findMatNeighbors = (node, image) => {
+//     const neighbors = [];
+//     const row = node[0];
+//     const col = node[1];
 
-    if (row - 1 >= 0) neighbors.push([row - 1, col]);
-    if (row + 1 <= image.length - 1) neighbors.push([row + 1, col]);
-    if (col - 1 >= 0) neighbors.push([row, col - 1]);
-    if (col + 1 <= image[0].length - 1) neighbors.push([row, col + 1]);
+//     if (row - 1 >= 0) neighbors.push([row - 1, col]);
+//     if (row + 1 <= image.length - 1) neighbors.push([row + 1, col]);
+//     if (col - 1 >= 0) neighbors.push([row, col - 1]);
+//     if (col + 1 <= image[0].length - 1) neighbors.push([row, col + 1]);
 
-    return neighbors;
-}
-const updateMatrix = mat => {
-    for (let i = 0; i < mat.length; i++) {
-        for (let j = 0; j < mat[i].length; j++) {
-            const node = mat[i][j];
-            if (node === 1) {
-                const set = new Set();
-                let queue = [[[i, j]]];
+//     return neighbors;
+// }
+// const updateMatrix = mat => {
+//     for (let i = 0; i < mat.length; i++) {
+//         for (let j = 0; j < mat[i].length; j++) {
+//             const node = mat[i][j];
+//             if (node === 1) {
+//                 const set = new Set();
+//                 let queue = [[[i, j]]];
 
-                while (queue.length) {
-                    const currPath = queue.shift();
-                    const lastNode = currPath[currPath.length - 1];
-                    set.add(lastNode.toString());
+//                 while (queue.length) {
+//                     const currPath = queue.shift();
+//                     const lastNode = currPath[currPath.length - 1];
+//                     set.add(lastNode.toString());
 
-                    if (mat[lastNode[0]][lastNode[1]] === 0) {
-                        mat[i][j] = currPath.length - 1;
-                        queue = [];
-                        break;
-                    }
-                    else {
-                        const neighbors = findMatNeighbors(lastNode, mat);
-                        neighbors.forEach(n => {
-                            if (!set.has(n)) {
-                                const copyPath = currPath.slice(0);
-                                copyPath.push(n);
-                                queue.push(copyPath);
-                            }
-                        });
-                    }
-                }
-            }
-        }
-    }
-    return mat;
-};
+//                     if (mat[lastNode[0]][lastNode[1]] === 0) {
+//                         mat[i][j] = currPath.length - 1;
+//                         queue = [];
+//                         break;
+//                     }
+//                     else {
+//                         const neighbors = findMatNeighbors(lastNode, mat);
+//                         neighbors.forEach(n => {
+//                             if (!set.has(n)) {
+//                                 const copyPath = currPath.slice(0);
+//                                 copyPath.push(n);
+//                                 queue.push(copyPath);
+//                             }
+//                         });
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     return mat;
+// };
 // DP:
 
 // K Closest Points to Origin
 // *Longest Substring Without Repeating Characters*
+const lengthOfLongestSubstring = s => {
+    if (s.length <= 1) return s.length;
+    const set = new Set();
+    let tmp = 0;
+    let max = -Infinity;
+
+    for (let i = 0; i < s.length; i++) {
+        if (!set.has(s[i])) {
+            set.add(s[i]);
+            if (set.size > max) max = set.size;
+        } else {
+            if (set.size > max) max = set.size;
+            set.clear();
+            i = tmp;
+            tmp++;
+        }
+    }
+
+    return max;
+};
 // *3Sum*
 // *Binary Tree Level Order Traversal*
 // *Clone Graph*
