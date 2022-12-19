@@ -478,7 +478,7 @@ const lengthOfLongestSubstring = s => {
 
 // *3Sum*
 const threeSum = nums => {
-    nums.sort((a,b) => a-b);
+    nums.sort((a, b) => a - b);
     const set = new Set();
     const res = [];
     for (let i = 0; i < nums.length; i++) {
@@ -523,6 +523,21 @@ const levelOrder = root => {
 };
 
 // *Clone Graph*
+const cloneGraph = node => {
+    const map = {};
+
+    const traverse = (node) => {
+        if (!node) return node;
+        if (!map[node.val]) {
+            map[node.val] = new Node(node.val);
+            map[node.val].neighbors = node.neighbors.map(neighbor => traverse(neighbor));
+        }
+        return map[node.val];
+    }
+
+    return traverse(node);
+};
+
 // Evaluate Reverse Polish Notation
 
 
