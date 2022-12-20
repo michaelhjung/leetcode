@@ -544,47 +544,63 @@ const cloneGraph = node => {
 // ===== Week 4 ===== //
 // *Course Schedule*
 // RIDICULOUS BRUTE FORCE SOLUTION:
-const canFinish = (numCourses, prerequisites) => {
-    if (prerequisites.length === 1) return true;
-    const adjList = [...new Array(numCourses)].map(el => []);
-    prerequisites.forEach(prereq => {
-        const [c, p] = prereq;
-        adjList[c].push(p);
-    });
+// const canFinish = (numCourses, prerequisites) => {
+//     if (prerequisites.length === 1) return true;
+//     const adjList = [...new Array(numCourses)].map(el => []);
+//     prerequisites.forEach(prereq => {
+//         const [c, p] = prereq;
+//         adjList[c].push(p);
+//     });
 
-    console.log(adjList);
+//     console.log(adjList);
 
-    const set = new Set();
-    adjList.forEach(list => set.add(list.toString()));
-    if (!set.has([].toString())) return false;
+//     const set = new Set();
+//     adjList.forEach(list => set.add(list.toString()));
+//     if (!set.has([].toString())) return false;
 
-    let count = 0;
-    let stack = [];
-    for (let i = 0; i < prerequisites.length; i++) stack.push(i);
+//     let count = 0;
+//     let stack = [];
+//     for (let i = 0; i < prerequisites.length; i++) stack.push(i);
 
-    while (stack.length) {
-        const index = stack.pop();
-        if (adjList[index] && adjList[index].length) {
-            adjList[index].forEach(el => {
-                stack.push(el);
-            });
-        }
-        count++;
-        if (count > prerequisites.length ** 2) return false;
-    }
+//     while (stack.length) {
+//         const index = stack.pop();
+//         if (adjList[index] && adjList[index].length) {
+//             adjList[index].forEach(el => {
+//                 stack.push(el);
+//             });
+//         }
+//         count++;
+//         if (count > prerequisites.length ** 2) return false;
+//     }
 
-    for (let i = 0; i < adjList.length; i++) {
-        const prereqs = adjList[i];
-        for (let j = 0; j < prereqs.length; j++) {
-            if (adjList[prereqs[j]].includes(i)) return false;
-        }
-    }
+//     for (let i = 0; i < adjList.length; i++) {
+//         const prereqs = adjList[i];
+//         for (let j = 0; j < prereqs.length; j++) {
+//             if (adjList[prereqs[j]].includes(i)) return false;
+//         }
+//     }
 
-    return true;
-};
+//     return true;
+// };
 
 // *Implement Trie (Prefix Tree)*
 // *Coin Change*
+const coinChange = (coins, amount) => {
+    if (amount === 0) return 0;
+    const table = new Array(amount + 1).fill(Infinity);
+    table[0] = 0;
+
+    for (let coin of coins) {
+        for (let i = 0; i < table.length; i++) {
+            if (coin <= i) {
+                table[i] = Math.min(table[i], 1 + table[i - coin]);
+            }
+        }
+    }
+
+    table[amount] === Infinity ? -1 : table[amount];
+};
+
 // *Product of Array Except Self*
 // Min Stack
 // *Validate Binary Search Tree*
