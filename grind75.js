@@ -602,6 +602,21 @@ const coinChange = (coins, amount) => {
 };
 
 // *Product of Array Except Self*
+const productExceptSelf = nums => {
+    const array = new Array(nums.length).fill(1);
+    let left = 1;
+    let right = 1;
+    for (let i = 0; i < nums.length; i++) {
+        array[i] = left;
+        left *= nums[i];
+    }
+    for (let i = nums.length - 2; i >= 0; i--) {
+        right *= nums[i + 1];
+        array[i] *= right;
+    }
+    return array;
+};
+
 // Min Stack
 // *Validate Binary Search Tree*
 // *Number of Islands*
