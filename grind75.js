@@ -610,9 +610,9 @@ const productExceptSelf = nums => {
         array[i] = left;
         left *= nums[i];
     }
-    for (let i = nums.length - 2; i >= 0; i--) {
-        right *= nums[i + 1];
+    for (let i = nums.length - 1; i >= 0; i--) {
         array[i] *= right;
+        right *= nums[i];
     }
     return array;
 };
