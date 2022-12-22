@@ -262,6 +262,18 @@ const inorderTraversal = root => {
 }
 
 
+// 100. Same Tree
+const isSameTree = (p, q) => {
+    if (p && q) {
+        if (p.val !== q.val) return false;
+    } else {
+        if (!p && !q) return true;
+        else return false;
+    }
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+}
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
