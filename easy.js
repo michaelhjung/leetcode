@@ -222,7 +222,12 @@ const addBinary = (a, b) => (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 
 // 69. Sqrt(x)
 const mySqrt = x => {
-
+    if (x === 0) return 0;
+    if (x <= 2) return 1;
+    for (let i = 2; i <= x; i ++) {
+        if (i ** 2 === x) return i;
+        else if (i ** 2 > x) return i - 1;
+    }
 }
 
 // 83. Remove Duplicates from Sorted List
@@ -272,6 +277,12 @@ const isSameTree = (p, q) => {
     }
     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 }
+
+
+// 101. Symmetric Tree
+const isSymmetric = root => {
+
+};
 
 
 // 191. Number of 1 Bits
