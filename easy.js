@@ -255,6 +255,13 @@ const merge = (nums1, m, nums2, n) => {
 };
 
 
+// 94. Binary Tree Inorder Traversal
+const inorderTraversal = root => {
+    if (!root) return [];
+    return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)];
+}
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
