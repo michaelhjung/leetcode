@@ -14,23 +14,39 @@ const runningSum = (nums) => {
 // SPACE COMPLEXITY: O(1)
 
 // 724. Find Pivot Index
-const pivotIndex = (nums) => {
-    let pointer = 0;
-    let leftSum = 0;
-    let rightSum = nums.reduce((acc, curr) => acc + curr, 0) - nums[0];
+// const pivotIndex = (nums) => {
+//     let pointer = 0;
+//     let leftSum = 0;
+//     let rightSum = nums.reduce((acc, curr) => acc + curr, 0) - nums[0];
 
-    while (pointer < nums.length) {
-        if (pointer > 0) {
-            leftSum += nums[pointer - 1];
-            rightSum -= nums[pointer];
-        }
-        if (leftSum === rightSum) return pointer;
+//     while (pointer < nums.length) {
+//         if (pointer > 0) {
+//             leftSum += nums[pointer - 1];
+//             rightSum -= nums[pointer];
+//         }
+//         if (leftSum === rightSum) return pointer;
 
-        pointer++;
+//         pointer++;
+//     }
+
+//     return -1;
+// }
+// ALTERNATIVE SOLUTION:
+const pivotIndex = nums => {
+    const sums = {};
+    for (let i = nums.length - 1; i >= 0; i--) {
+        sums[i] = { left: null, right: null };
+        if (i === nums.length - 1) sums[i].right = 0;
+        else sums[i].right = sums[i + 1].right + nums[i + 1];
     }
+    for (let i = 0; i < nums.length; i++) {
+        if (i === 0) sums[i].left = 0;
+        else sums[i].left = sums[i - 1].left + nums[i - 1];
 
+        if (sums[i].left === sums[i].right) return i;
+    }
     return -1;
-}
+};
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(1)
 
