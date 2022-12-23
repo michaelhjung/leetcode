@@ -295,6 +295,19 @@ const isSymmetric = root => {
 };
 
 
+// 108. Convert Sorted Array to Binary Search Tree
+const sortedArrayToBST = nums => {
+    if (!nums.length) return null;
+    const mid = Math.floor(nums.length / 2);
+    const head = new TreeNode(nums[mid]);
+
+    head.left = sortedArrayToBST(nums.slice(0, mid));
+    head.right = sortedArrayToBST(nums.slice(mid + 1));
+
+    return head;
+};
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
