@@ -281,7 +281,17 @@ const isSameTree = (p, q) => {
 
 // 101. Symmetric Tree
 const isSymmetric = root => {
-
+    if (!root || (!root.left && !root.right)) return true;
+    const q1 = [root.left], q2 = [root.right];
+    while (q1.length && q2.length) {
+        const left = q1.shift();
+        const right = q2.shift();
+        if (!left && !right) continue;
+        if (!left || !right || left.val !== right.val) return false;
+        q1.push(left.left, left.right);
+        q2.push(right.right, right.left);
+    }
+    return true;
 };
 
 
