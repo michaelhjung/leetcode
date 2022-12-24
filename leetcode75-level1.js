@@ -96,13 +96,11 @@ const isIsomorphic = (s, t) => {
 
 // 392. Is Subsequence
 const isSubsequence = (s, t) => {
-    let pointer = 0;
+    let p = 0;
     for (let i = 0; i < t.length; i++) {
-        if (t[i] === s[pointer]) pointer++;
+        if (t[i] === s[p]) p++;
     }
-
-    if (pointer === s.length) return true;
-    else return false;
+    return p === s.length;
 };
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
