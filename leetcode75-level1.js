@@ -53,29 +53,46 @@ const pivotIndex = nums => {
 
 // ========== DAY 2: String ========== //
 // 205. Isomorphic Strings
-const isIsomorphic = (s, t) => {
-    const charMap = {};
-    const added = new Set();
-    let convertedWord = "";
+// const isIsomorphic = (s, t) => {
+//     const charMap = {};
+//     const added = new Set();
+//     let convertedWord = "";
 
-    for (let i = 0; i < s.length; i++) {
-        let char = s[i];
-        let corrChar = t[i];
+//     for (let i = 0; i < s.length; i++) {
+//         let char = s[i];
+//         let corrChar = t[i];
 
-        if (!charMap[char] && !added.has(corrChar)) {
-            charMap[char] = corrChar;
-            added.add(corrChar);
-            convertedWord += corrChar;
-        } else {
-            convertedWord += charMap[char];
-        }
-    }
+//         if (!charMap[char] && !added.has(corrChar)) {
+//             charMap[char] = corrChar;
+//             added.add(corrChar);
+//             convertedWord += corrChar;
+//         } else {
+//             convertedWord += charMap[char];
+//         }
+//     }
 
-    if (convertedWord === t) return true;
-    else return false;
-};
+//     if (convertedWord === t) return true;
+//     else return false;
+// };
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
+// REFACTORED SOLUTION:
+const isIsomorphic = (s, t) => {
+    let translated = "";
+    const hm = {};
+    const assignedChar = new Set();
+    for (let i = 0; i < s.length; i++) {
+        if (!hm[s[i]]) {
+            if (assignedChar.has(t[i])) return false;
+            hm[s[i]] = t[i];
+            assignedChar.add(t[i]);
+        }
+        else if (s[i] in hm && hm[s[i]] !== t[i]) return false;
+        translated += t[i];
+    }
+    return translated === t;
+};
+
 
 // 392. Is Subsequence
 const isSubsequence = (s, t) => {
