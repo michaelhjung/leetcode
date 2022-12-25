@@ -108,41 +108,54 @@ const isSubsequence = (s, t) => {
 
 // ========== DAY 3: Linked List ========== //
 // 21. Merge Two Sorted Lists
-const mergeTwoLists = (list1, list2) => {
-    if (list1 === null && list2 === null) return list1;
-    if (list1 === null && list2 !== null) return list2;
-    if (list2 === null && list1 !== null) return list1;
+// const mergeTwoLists = (list1, list2) => {
+//     if (list1 === null && list2 === null) return list1;
+//     if (list1 === null && list2 !== null) return list2;
+//     if (list2 === null && list1 !== null) return list1;
 
-    let head;
-    let other;
-    if (list1.val <= list2.val) {
-        head = list1;
-        other = list2;
-    }
-    else {
-        head = list2;
-        other = list1;
-    }
-    let curr = head;
-    let prev = null;
+//     let head;
+//     let other;
+//     if (list1.val <= list2.val) {
+//         head = list1;
+//         other = list2;
+//     }
+//     else {
+//         head = list2;
+//         other = list1;
+//     }
+//     let curr = head;
+//     let prev = null;
 
-    while (curr) {
-        if (!curr.next) break;
-        if (curr.next.val > other.val) {
-            const next = curr.next;
-            curr.next = other;
-            other = next;
-        }
+//     while (curr) {
+//         if (!curr.next) break;
+//         if (curr.next.val > other.val) {
+//             const next = curr.next;
+//             curr.next = other;
+//             other = next;
+//         }
 
-        curr = curr.next;
-    }
+//         curr = curr.next;
+//     }
 
-    curr.next = other;
+//     curr.next = other;
 
-    return head;
-};
+//     return head;
+// };
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(1)
+// RECURSIVE SOLUTION:
+const mergeTwoLists = (l1, l2) => {
+    if (!l1 || !l2) return l1 ? l1 : l2;
+
+    if (l1.val <= l2.val) {
+        l1.next = mergeTwoLists(l1.next, l2);
+        return l1;
+    } else {
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2;
+    }
+};
+
 
 // 206. Reverse Linked List
 // const reverseList = (head) => {
