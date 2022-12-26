@@ -188,6 +188,17 @@ const removeElement = (nums, val) => {
 };
 
 
+// 35. Search Insert Position
+const searchInsert = (nums, target) => {
+    if (nums.indexOf(target) !== -1) return nums.indexOf(target);
+    if (target < nums[0]) return 0;
+
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (target > nums[i]) return i + 1;
+    }
+};
+
+
 // 58. Length of Last Word
 const lengthOfLastWord = s => s.trim().split(' ').reverse()[0].length;
 
@@ -308,6 +319,16 @@ const sortedArrayToBST = nums => {
 };
 
 
+// 111. Minimum Depth of Binary Tree
+const minDepth = root => {
+    if (!root) return 0;
+    if (!root.left) return minDepth(root.right) + 1;
+    if (!root.right) return minDepth(root.left) + 1;
+
+    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+}
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
@@ -344,17 +365,6 @@ const hasGroupsSizeX = deck => {
 
     return hasGCF(cardCounts);
 }
-
-
-// 35. Search Insert Position
-const searchInsert = (nums, target) => {
-    if (nums.indexOf(target) !== -1) return nums.indexOf(target);
-    if (target < nums[0]) return 0;
-
-    for (let i = nums.length - 1; i >= 0; i--) {
-        if (target > nums[i]) return i + 1;
-    }
-};
 
 
 // 2016. Maximum Difference Between Increasing Elements
