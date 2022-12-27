@@ -258,20 +258,15 @@ const detectCycle = (head) => {
 // ========== DAY 5: Greedy ========== //
 // 121. Best Time to Buy and Sell Stock
 const maxProfit = (prices) => {
-    if (prices.length === 1) return 0;
+    let profit = 0;
+    let min = prices[0];
 
-    let distances = {};
-    let smallest = prices[0];
-
-    for (let i = 0; i < prices.length; i++) {
-        const price = prices[i];
-        if (!distances[price]) distances[price] = 0;
-        if (price < smallest) smallest = price;
-        if (price - smallest > distances[smallest]) distances[smallest] = price - smallest;
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] > min && prices[i] - min > profit) profit = prices[i] - min;
+        if (prices[i] < min) min = prices[i];
     }
 
-    const sortedDistances = Object.values(distances).sort((a, b) => b - a);
-    return sortedDistances[0];
+    return profit;
 }
 // TIME COMPLEXITY: O(N)
 // SPACE COMPLEXITY: O(N)
