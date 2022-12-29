@@ -301,8 +301,7 @@ const longestPalindrome = (s) => {
 const preorder = (root, path = []) => {
     if (!root) return [];
     path.push(root.val);
-    const children = root.children;
-    if (children) children.forEach(node => preorder(node, path));
+    root.children.forEach(child => preorder(child, path));
     return path;
 }
 // TIME COMPLEXITY: O(N)
