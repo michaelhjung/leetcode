@@ -380,6 +380,17 @@ const getRow = rowIndex => {
 };
 
 
+// Single Number
+const singleNumber = nums => {
+    if (nums.length === 1) return nums[0];
+    nums.sort((a, b)  => a - b);
+    for (let i = 1; i < nums.length; i += 2) {
+        if (i === nums.length - 2 && nums[i] === nums[i - 1]) return nums[nums.length - 1];
+        else if (nums[i] !== nums[i - 1]) return nums[i - 1];
+    }
+};
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
