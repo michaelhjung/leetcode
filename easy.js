@@ -408,6 +408,23 @@ const preorderTraversal = root => {
 };
 
 
+// 145. Binary Tree Postorder Traversal
+const postorderTraversal = root => {
+    const res = [];
+    if (!root) return res;
+    const stack = [root];
+
+    while (stack.length) {
+        const node = stack.pop();
+        res.unshift(node.val);
+        if (node.left) stack.push(node.left);
+        if (node.right) stack.push(node.right);
+    }
+
+    return res;
+}
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
