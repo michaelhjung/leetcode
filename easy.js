@@ -342,6 +342,25 @@ const hasPathSum = (root, targetSum, currSum=0) => {
 };
 
 
+// 118. Pascal's Triangle
+const generate = numRows => {
+    const res = [[1]];
+    if (numRows === 1) return res;
+
+    for (let i = 1; i < numRows; i++) {
+        const newRow = new Array(res[i - 1].length + 1);
+        newRow[0] = 1;
+        newRow[newRow.length-1] = 1;
+        for (let j = 1; j < res[i - 1].length; j++) {
+            newRow[j] = res[i - 1][j - 1] + res[i - 1][j];
+        }
+        res[i] = newRow;
+    }
+
+    return res;
+};
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
