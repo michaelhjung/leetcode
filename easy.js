@@ -329,6 +329,19 @@ const minDepth = root => {
 }
 
 
+// 112. Path Sum
+const hasPathSum = (root, targetSum, currSum=0) => {
+    if (!root) return false;
+
+    currSum += root.val;
+    if (hasPathSum(root.left, targetSum, currSum)) return true;
+    if (hasPathSum(root.right, targetSum, currSum)) return true;
+
+    if ((!root.left && !root.right) && (currSum === targetSum)) return true;
+    else return false;
+};
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
