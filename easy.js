@@ -380,7 +380,7 @@ const getRow = rowIndex => {
 };
 
 
-// Single Number
+// 136. Single Number
 const singleNumber = nums => {
     if (nums.length === 1) return nums[0];
     nums.sort((a, b)  => a - b);
@@ -388,6 +388,23 @@ const singleNumber = nums => {
         if (i === nums.length - 2 && nums[i] === nums[i - 1]) return nums[nums.length - 1];
         else if (nums[i] !== nums[i - 1]) return nums[i - 1];
     }
+};
+
+
+// 144. Binary Tree Preorder Traversal
+const preorderTraversal = root => {
+    const res = [];
+    if (!root) return res;
+    const stack = [root];
+
+    while (stack.length) {
+        const node = stack.pop();
+        res.push(node.val);
+        if (node.right) stack.push(node.right);
+        if (node.left) stack.push(node.left);
+    }
+
+    return res;
 };
 
 
