@@ -361,6 +361,25 @@ const generate = numRows => {
 };
 
 
+// 119. Pascal's Triangle II
+const getRow = rowIndex => {
+    const res = [[1]];
+    if (rowIndex + 1 === 1) return res;
+
+    for (let i = 1; i < rowIndex + 1; i++) {
+        const newRow = new Array(res[i - 1].length + 1);
+        newRow[0] = 1;
+        newRow[newRow.length-1] = 1;
+        for (let j = 1; j < res[i - 1].length; j++) {
+            newRow[j] = res[i - 1][j - 1] + res[i - 1][j];
+        }
+        res[i] = newRow;
+    }
+
+    return res[rowIndex];
+};
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
