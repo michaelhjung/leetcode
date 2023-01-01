@@ -425,6 +425,21 @@ const postorderTraversal = root => {
 }
 
 
+// 160. Intersection of Two Linked Lists
+const getIntersectionNode = (headA, headB) => {
+    const set = new Set();
+    while (headA) {
+        set.add(headA);
+        headA = headA.next;
+    }
+    while (headB) {
+        if (set.has(headB)) return headB;
+        headB = headB.next;
+    }
+    return null;
+};
+
+
 // 191. Number of 1 Bits
 const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
