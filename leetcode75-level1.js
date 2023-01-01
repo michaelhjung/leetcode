@@ -389,20 +389,26 @@ const solution = (isBadVersion) => {
 
 // ========== DAY 8: Binary Search Tree ========== //
 // 98. Validate Binary Search Tree
-const isValidBST = (root) => {
+// const isValidBST = (root) => {
 
-    function inOrder(node) {
-        if (!node) return [];
-        return [...inOrder(node.left), node.val, ...inOrder(node.right)]
-    }
+//     function inOrder(node) {
+//         if (!node) return [];
+//         return [...inOrder(node.left), node.val, ...inOrder(node.right)]
+//     }
 
-    const sortedArr = inOrder(root);
+//     const sortedArr = inOrder(root);
 
-    for (let i = 0; i < sortedArr.length; i++) {
-        if (sortedArr[i + 1] <= sortedArr[i]) return false;
-    }
+//     for (let i = 0; i < sortedArr.length; i++) {
+//         if (sortedArr[i + 1] <= sortedArr[i]) return false;
+//     }
 
-    return true;
+//     return true;
+// };
+// BETTER SOLUTION:
+const isValidBST = (root, min=-Infinity, max=Infinity) => {
+    if (!root) return true;
+    if (root.val <= min || root.val >= max) return false;
+    return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
 };
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
