@@ -697,6 +697,40 @@ function explore(row, col, grid) {
 // ===== Week 5 ===== //
 // *Search in Rotated Sorted Array*
 // *Combination Sum
+// BRUTEFORCE:
+// const combinationSum = (candidates, target, res = []) => {
+//     if (target < 0) return [];
+//     const allCombos = [];
+//     for (let num of candidates) {
+//         if (target - num === 0) allCombos.push([...res, num]);
+//         allCombos.push(...combinationSum(candidates, target - num, [...res, num]));
+//     }
+//     const answer = [];
+//     const set = new Set();
+//     allCombos.forEach(combo => {
+//         combo.sort((a, b) => a - b);
+//         if (!set.has(combo.toString())) {
+//             answer.push(combo);
+//             set.add(combo.toString());
+//         }
+//     });
+//     return answer;
+// };
+// BETTER ANSWER:
+const combinationSum = (candidates, target) => {
+    const result = [];
+
+    function permute(arr = [], sum = 0, idx = 0) {
+        if (sum > target) return;
+        if (sum === target) result.push(arr);
+
+        for (let i = idx; i < candidates.length; i++) {
+            permute([...arr, candidates[i]], sum + candidates[i], i);
+        }
+    }
+    permute()
+    return result;
+};
 // Permutations
 // *Merge Intervals*
 // *Lowest Common Ancestor of a Binary Tree
