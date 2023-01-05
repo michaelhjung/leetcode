@@ -405,7 +405,7 @@ const solution = (isBadVersion) => {
 //     return true;
 // };
 // BETTER SOLUTION:
-const isValidBST = (root, min=-Infinity, max=Infinity) => {
+const isValidBST = (root, min = -Infinity, max = Infinity) => {
     if (!root) return true;
     if (root.val <= min || root.val >= max) return false;
     return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
@@ -594,8 +594,17 @@ const minCostClimbingStairs = (cost) => {
 // SPACE COMPLEXITY: O(1)
 
 // 62. Unique Paths
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
+const uniquePaths = (m, n, memo={}) => {
+    const key = `${m},${n}`;
+    if (key in memo) return memo[key];
+    if (m === 0 || n === 0) return 0;
+    if (m === 1 || n === 1) return 1;
+
+    memo[key] = uniquePaths(m - 1, n, memo) + uniquePaths(m, n - 1, memo);
+    return memo[key];
+};
+// TIME COMPLEXITY: O(m * n)
+// SPACE COMPLEXITY: O(m + n)
 
 
 // ========== DAY 12: Sliding Window/Two Pointer ========== //
