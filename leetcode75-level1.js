@@ -594,7 +594,7 @@ const minCostClimbingStairs = (cost) => {
 // SPACE COMPLEXITY: O(1)
 
 // 62. Unique Paths
-const uniquePaths = (m, n, memo={}) => {
+const uniquePaths = (m, n, memo = {}) => {
     const key = `${m},${n}`;
     if (key in memo) return memo[key];
     if (m === 0 || n === 0) return 0;
@@ -609,6 +609,31 @@ const uniquePaths = (m, n, memo={}) => {
 
 // ========== DAY 12: Sliding Window/Two Pointer ========== //
 // 438. Find All Anagrams in a String
+const findAnagrams = (s, p) => {
+    const res = [];
+    const neededChars = {};
+
+    for (let c of p) {
+        neededChars[c] = neededChars[c] ? neededChars[c] + 1 : 1;
+    }
+
+    let left = 0, right = 0, count = p.length;
+
+    while (right < s.length) {
+        if (neededChars[s[right]] > 0) count--;
+
+        neededChars[s[right]]--;
+        right++;
+
+        if (count === 0) res.push(left);
+        if (right - left == p.length) {
+            if (neededChars[s[left]] >= 0) count++;
+            neededChars[s[left]]++;
+            left++;
+        }
+    }
+    return res;
+}
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
