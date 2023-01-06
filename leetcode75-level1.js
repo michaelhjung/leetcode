@@ -698,18 +698,15 @@ const backspaceCompare = (s, t) => {
 // ========== DAY 15: Heap ========== //
 // 1046. Last Stone Weight
 const lastStoneWeight = (stones) => {
+    stones.sort((a, b) => a - b);
     while (stones.length > 1) {
-        const max1 = Math.max(...stones);
-        const i = stones.indexOf(max1);
-        stones.splice(i, 1);
-
-        const max2 = Math.max(...stones);
-        const j = stones.indexOf(max2);
-        stones.splice(j, 1);
-
-        if (max2 < max1) stones.push(max1 - max2);
+        const stone1 = stones.pop();
+        const stone2 = stones.pop();
+        if (stone1 !== stone2) {
+            stones.push(Math.abs(stone1 - stone2));
+            stones.sort((a, b) => a - b);
+        }
     }
-
     return stones.length ? stones[0] : 0;
 };
 // TIME COMPLEXITY: O(N^2)
