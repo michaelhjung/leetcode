@@ -638,6 +638,71 @@ const findAnagrams = (s, p) => {
 // SPACE COMPLEXITY:
 
 // 424. Longest Repeating Character Replacement
+const characterReplacement = (s, k) => {
+    let res = 0, l = 0, r = 1, currentLetter = s[0], tmpCount = k, currCount = 1;
+
+    const charCounts = {};
+    for (let c of s) {
+        if (c in charCounts) charCounts[c]++;
+        else charCounts[c] = 1;
+    }
+    let max = { char: null, count: -Infinity };
+    Object.entries(charCounts).forEach(e => {
+        if (charCounts[e[0]] > max.count) {
+            max.count = charCounts[e[0]];
+            max.char = e[0];
+        }
+    });
+    if (max.count + k >= s.length) return s.length;
+
+    while (l < s.length) {
+        if (currentLetter !== s[r]) {
+            tmpCount--;
+        }
+        if (tmpCount >= 0) currCount++;
+        r++;
+
+        if (r >= s.length || tmpCount < 0) {
+            res = Math.max(res, currCount);
+
+            // reset:
+            l++;
+            r = l + 1;
+            currentLetter = s[l];
+            tmpCount = k;
+            currCount = 1;
+        }
+    }
+
+    // reset:
+    l = s.length - 2;
+    r = s.length - 1;
+    currentLetter = s[r];
+    tmpCount = k;
+    currCount = 1;
+
+
+    while (l >= 0) {
+        if (currentLetter !== s[l]) {
+            tmpCount--;
+        }
+        if (tmpCount >= 0) currCount++;
+        l--;
+
+        if (l < 0 || tmpCount < 0) {
+            res = Math.max(res, currCount);
+
+            // reset:
+            r--;
+            l = r - 1;
+            currentLetter = s[r];
+            tmpCount = k;
+            currCount = 1;
+        }
+    }
+
+    return res;
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
