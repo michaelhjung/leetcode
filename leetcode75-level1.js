@@ -778,6 +778,9 @@ const backspaceCompare = (s, t) => {
 // SPACE COMPLEXITY: O(N)
 
 // 394. Decode String
+const decodeString = s => {
+
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
@@ -800,5 +803,25 @@ const lastStoneWeight = (stones) => {
 // SPACE COMPLEXITY: O(1)
 
 // 692. Top K Frequent Words
+const topKFrequent = (words, k) => {
+    const counts = {};
+    for (let word of words) {
+        if (counts[word]) counts[word]++;
+        else counts[word] = 1;
+    }
+    const sortedCounts = Object.entries(counts).sort((a, b) => {
+        if (a[1] !== b[1]) return b[1] - a[1];
+        else {
+            if (a[0] < b[0]) return -1;
+            else return 1;
+        }
+    });
+
+    const res = [];
+    for (let i = 0; i < k; i++) {
+        res.push(sortedCounts[i][0]);
+    }
+    return res;
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
