@@ -779,7 +779,36 @@ const backspaceCompare = (s, t) => {
 
 // 394. Decode String
 const decodeString = s => {
+    const stack = [];
+    for (let c of s) {
+        if (c !== "]") stack.push(c);
+        else {
+            let top = stack[stack.length - 1];
+            let str = "";
+            while (top !== "[") {
+                const char = stack.pop();
+                str = char + str;
+                top = stack[stack.length - 1];
+            }
+            stack.pop();
 
+            let num = "";
+            top = stack[stack.length - 1];
+            while (!isNaN(Number(top))) {
+                const digit = stack.pop();
+                num = digit + num;
+                top = stack[stack.length - 1];
+            }
+
+            let strToPushBack = "";
+            for (let i = 0; i < Number(num); i++) {
+                strToPushBack += str;
+            }
+
+            stack.push(strToPushBack);
+        }
+    }
+    return stack.join("");
 };
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
