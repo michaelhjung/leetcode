@@ -729,6 +729,28 @@ const twoSum = (nums, target) => {
 // SPACE COMPLEXITY: O(N)
 
 // 299. Bulls and Cows
+const getHint = (secret, guess) => {
+    let bulls = 0;
+    let cows = 0;
+    const chars = {};
+
+    for (let i = 0; i < secret.length; i++) {
+        if (guess[i] === secret[i]) bulls++;
+        else {
+            if (chars[secret[i]]) chars[secret[i]]++;
+            else chars[secret[i]] = 1;
+        }
+    }
+
+    for (let i = 0; i < secret.length; i++) {
+        if (guess[i] !== secret[i] && chars[guess[i]] > 0) {
+            chars[guess[i]]--;
+            cows++;
+        }
+    }
+
+    return `${bulls}A${cows}B`;
+};
 // TIME COMPLEXITY:
 // SPACE COMPLEXITY:
 
