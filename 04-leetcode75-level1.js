@@ -10,8 +10,6 @@ const runningSum = (nums) => {
     }
     return nums;
 }
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(1)
 
 // 724. Find Pivot Index
 // const pivotIndex = (nums) => {
@@ -47,8 +45,6 @@ const pivotIndex = nums => {
     }
     return -1;
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(1)
 
 
 // ========== DAY 2: String ========== //
@@ -74,8 +70,6 @@ const pivotIndex = nums => {
 //     if (convertedWord === t) return true;
 //     else return false;
 // };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 // REFACTORED SOLUTION:
 const isIsomorphic = (s, t) => {
     let translated = "";
@@ -102,8 +96,6 @@ const isSubsequence = (s, t) => {
     }
     return p === s.length;
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 3: Linked List ========== //
@@ -141,8 +133,6 @@ const isSubsequence = (s, t) => {
 
 //     return head;
 // };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(1)
 // RECURSIVE SOLUTION:
 const mergeTwoLists = (l1, l2) => {
     if (!l1 || !l2) return l1 ? l1 : l2;
@@ -198,8 +188,6 @@ const reverseList = (head) => {
 
     return prev;
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(1)
 
 
 // ========== DAY 4: Linked List ========== //
@@ -235,8 +223,6 @@ const middleNode = (head) => {
 
     return slow;
 }
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(1)
 
 // 142. Linked List Cycle II
 const detectCycle = (head) => {
@@ -251,8 +237,6 @@ const detectCycle = (head) => {
 
     return null;
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 5: Greedy ========== //
@@ -268,8 +252,6 @@ const maxProfit = (prices) => {
 
     return profit;
 }
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 // 409. Longest Palindrome
 const longestPalindrome = (s) => {
@@ -292,8 +274,6 @@ const longestPalindrome = (s) => {
     if (addedOdd) oddCount++;
     return evenCount + oddCount;
 }
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 6: Tree ========== //
@@ -304,8 +284,6 @@ const preorder = (root, path = []) => {
     root.children.forEach(child => preorder(child, path));
     return path;
 }
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 // 102. Binary Tree Level Order Traversal
 const levelOrder = (root) => {
@@ -331,8 +309,6 @@ const levelOrder = (root) => {
 
     return path;
 };
-// TIME COMPLEXITY: O(N^2)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 7: Binary Search ========== //
@@ -359,8 +335,6 @@ const search = (nums, target) => {
 
     return -1;
 };
-// TIME COMPLEXITY: O(LOG N)
-// SPACE COMPLEXITY: O(N)
 
 // 278. First Bad Version
 const solution = (isBadVersion) => {
@@ -383,8 +357,6 @@ const solution = (isBadVersion) => {
         }
     };
 };
-// TIME COMPLEXITY: O(LOG N)
-// SPACE COMPLEXITY: O(1)
 
 
 // ========== DAY 8: Binary Search Tree ========== //
@@ -410,8 +382,6 @@ const isValidBST = (root, min = -Infinity, max = Infinity) => {
     if (root.val <= min || root.val >= max) return false;
     return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
 
 // 235. Lowest Common Ancestor of a Binary Search Tree
 // const lowestCommonAncestor = (root, p, q) => {
@@ -457,16 +427,12 @@ const isValidBST = (root, min = -Infinity, max = Infinity) => {
 //         }
 //     }
 // };
-// TIME COMPLEXITY: O(N^2)
-// SPACE COMPLEXITY: O(N)
 // BETTER SOLUTION:
 const lowestCommonAncestor = (root, p, q) => {
     if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
     else if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
     else return root;
 }
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 9: Graph/BFS/DFS ========== //
@@ -507,8 +473,6 @@ const floodFill = (image, sr, sc, color) => {
 
     return image;
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 // 200. Number of Islands
 const numIslands = (grid) => {
@@ -541,8 +505,6 @@ const numIslands = (grid) => {
 
     return count;
 };
-// TIME COMPLEXITY: O(N^3)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 10: Dynamic Programming ========== //
@@ -557,8 +519,6 @@ const fib = (n, memo = {}) => {
 
     return result;
 };
-// TIME COMPLEXITY: O(1)
-// SPACE COMPLEXITY: O(N)
 
 // 70. Climbing Stairs
 const climbStairs = (n, memo = {}) => {
@@ -571,8 +531,6 @@ const climbStairs = (n, memo = {}) => {
 
     return result;
 };
-// TIME COMPLEXITY: O(1)
-// SPACE COMPLEXITY: O(N)
 
 
 // ========== DAY 11: Dynamic Programming ========== //
@@ -590,8 +548,6 @@ const minCostClimbingStairs = (cost) => {
     }
     return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(1)
 
 // 62. Unique Paths
 const uniquePaths = (m, n, memo = {}) => {
@@ -603,8 +559,6 @@ const uniquePaths = (m, n, memo = {}) => {
     memo[key] = uniquePaths(m - 1, n, memo) + uniquePaths(m, n - 1, memo);
     return memo[key];
 };
-// TIME COMPLEXITY: O(m * n)
-// SPACE COMPLEXITY: O(m + n)
 
 
 // ========== DAY 12: Sliding Window/Two Pointer ========== //
@@ -634,8 +588,6 @@ const findAnagrams = (s, p) => {
     }
     return res;
 }
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
 
 // 424. Longest Repeating Character Replacement
 const characterReplacement = (s, k) => {
@@ -703,8 +655,6 @@ const characterReplacement = (s, k) => {
 
     return res;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
 
 
 // ========== DAY 13: Hashmap ========== //
@@ -725,8 +675,6 @@ const twoSum = (nums, target) => {
         hashMap[nums[i]] = i;
     }
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 // 299. Bulls and Cows
 const getHint = (secret, guess) => {
@@ -751,8 +699,6 @@ const getHint = (secret, guess) => {
 
     return `${bulls}A${cows}B`;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
 
 
 // ========== DAY 14: Stack ========== //
@@ -774,8 +720,6 @@ const backspaceCompare = (s, t) => {
     if (stackS.join('') === stackT.join('')) return true;
     else return false;
 };
-// TIME COMPLEXITY: O(N)
-// SPACE COMPLEXITY: O(N)
 
 // 394. Decode String
 const decodeString = s => {
@@ -810,8 +754,6 @@ const decodeString = s => {
     }
     return stack.join("");
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:
 
 
 // ========== DAY 15: Heap ========== //
@@ -828,8 +770,6 @@ const lastStoneWeight = (stones) => {
     }
     return stones.length ? stones[0] : 0;
 };
-// TIME COMPLEXITY: O(N^2)
-// SPACE COMPLEXITY: O(1)
 
 // 692. Top K Frequent Words
 const topKFrequent = (words, k) => {
@@ -852,5 +792,3 @@ const topKFrequent = (words, k) => {
     }
     return res;
 };
-// TIME COMPLEXITY:
-// SPACE COMPLEXITY:

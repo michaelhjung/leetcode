@@ -28,7 +28,7 @@ const addTwoNumbers = (l1, l2) => {
 
 
 // 15. 3Sum
-const threeSum = (nums) => {
+const threeSum = nums => {
     const res = [];
     nums.sort((a, b) => a - b);
     const set = new Set();
@@ -55,7 +55,7 @@ const threeSum = (nums) => {
 
 
 // 48. Rotate Image
-const rotate = (matrix) => {
+const rotate = matrix => {
     for (let row = 0; row < matrix.length; row++) {
         for (let col = 0; col < matrix[row].length; col++) {
             let tmp = matrix[row][col];
@@ -67,11 +67,10 @@ const rotate = (matrix) => {
     matrix.forEach(row => row.reverse());
     return matrix;
 };
-// console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]));
 
 
 // 91. Decode Ways
-const numDecodings = (s) => {
+const numDecodings = s => {
     if (!s || s.length === 0) return 0;
     if (s[0] === '0') return 0;
 
@@ -97,7 +96,7 @@ const numDecodings = (s) => {
 
 
 // 198. House Robber
-const rob = (nums) => {
+const rob = nums => {
     if (!nums.length) return 0;
     if (nums.length === 1) return nums[0];
     if (nums.length === 2) return Math.max(nums[0], nums[1]);
@@ -125,7 +124,7 @@ const rob = (nums) => {
 
 
 // 204. Count Primes
-// const countPrimes = (n) => {
+// const countPrimes = n => {
 //     const seen = new Set();
 //     let primeCount = 0;
 //     for (let i = 2; i < n; i++) {
@@ -137,7 +136,7 @@ const rob = (nums) => {
 //     }
 //     return primeCount;
 // };
-const countPrimes = (n) => {
+const countPrimes = n => {
     const table = new Array(n).fill(true);
     table[0] = false;
     table[1] = false;
@@ -152,7 +151,7 @@ const countPrimes = (n) => {
 
 
 // 443. String Compression
-const compress = (chars) => {
+const compress = chars => {
     if (!chars.length) return 0;
     let letter = chars[0], count = 1, pointer = 0;
     for (let i = 1; i <= chars.length; i++) {
@@ -205,28 +204,10 @@ const checkSubarraySum = (nums, k) => {
 
 // 809. Expressive Words <== UNFINISHED
 const expressiveWords = (s, words) => {
-    let count = 0;
-    const splitS = [];
-    let tmp = { startI: 0, letter: s[0] };
-    for (let i = 1; i < s.length; i++) {
-        if ((tmp.letter !== null && s[i] !== tmp.letter) || i === s.length - 1) {
-            const section = s.slice(tmp.startI, i);
-            splitS.push(section);
-
-            tmp.startI = i;
-            tmp.letter = s[i];
-        }
-    }
-
 
 
 
 };
-// const s = "heeellooo";
-// const words = ["hello", "hi", "helo"];
-// const s = "abcd";
-// const words = ["abc"];
-// console.log(expressiveWords(s, words));
 
 
 // 881. Boats to Save People
@@ -244,7 +225,7 @@ const numRescueBoats = (people, limit) => {
 
 
 // 1010. Pairs of Songs With Total Durations Divisible by 60
-const numPairsDivisibleBy60 = (time) => {
+const numPairsDivisibleBy60 = time => {
     let count = 0;
     const map = {};
     for (let t of time) {

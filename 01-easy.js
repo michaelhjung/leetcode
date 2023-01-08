@@ -1,28 +1,4 @@
 // 1. TWO SUM
-// Given an array of integers nums and an integer target,
-//     return indices of the two numbers such that they add up to target.
-// You may assume that each input would have exactly one solution,
-//     and you may not use the same element twice.
-// You can return the answer in any order.
-
-// // SOLUTION 1:
-// function twoSum(nums, target) {
-//     let output;
-
-//     for (let i = 0; i < nums.length; i++) {
-//         for (let j = i+1; j < nums.length; j++) {
-//             if (nums[i] + nums[j] === target) {
-//                 output = [i, j];
-//                 return output;
-//             }
-//         }
-//     }
-// }
-
-// SOLUTION 2:
-const seen = new Set();
-let neededNum;
-
 const twoSum = (nums, target) => {
     const seen = new Set();
     let neededNum;
@@ -36,23 +12,12 @@ const twoSum = (nums, target) => {
     }
 }
 
-// const nums = [2,7,11,15];
-// const target = 9;
-// console.log(twoSum(nums, target));
-
 
 // 9. PALINDROME NUMBER
-// Given an integer x, return true if x is a palindrome, and false otherwise.
-function isPalindrome(x) {
-    return x.toString() === x.toString().split('').reverse().join('');
-}
-
-// const x = 121;
-// console.log(isPalindrome(x));
+const isPalindrome = x => x.toString() === x.toString().split('').reverse().join('');
 
 
 // 10. ROMAN TO INTEGER
-// Given a roman numeral, convert it to an integer.
 function romanToInt(s) {
     const romans = {
         I: 1,
@@ -99,40 +64,31 @@ function romanToInt(s) {
     return converted;
 }
 
-// const s = "DCXXI"; // 621
-// console.log(romanToInt(s));
-
 
 // 14. Longest Common Prefix
-    // Write a function to find the longest common prefix string amongst an array of strings.
-    // If there is no common prefix, return an empty string "".
+function longestCommonPrefix(strs) {
+    if (strs.length === 1) return strs[0];
+    let common = "";
 
-    function longestCommonPrefix(strs) {
-        if (strs.length === 1) return strs[0];
-        let common = "";
+    const shortestWord = strs.reduce((acc, currVal) => {
+        if (currVal.length < acc.length) acc = currVal;
+        return acc;
+    }, strs[0]);
 
-        const shortestWord = strs.reduce((acc, currVal) => {
-            if (currVal.length < acc.length) acc = currVal;
-            return acc;
-        }, strs[0]);
-
-        for (let i = 0; i < shortestWord.length; i++) {
-            let tmp = shortestWord[i];
-            for (let j = 0; j < strs.length; j++) {
-                if (strs[j][i] !== shortestWord[i]) return common;
-                if (j === strs.length - 1 && strs[j][i] === shortestWord[i]) common += tmp;
-            }
+    for (let i = 0; i < shortestWord.length; i++) {
+        let tmp = shortestWord[i];
+        for (let j = 0; j < strs.length; j++) {
+            if (strs[j][i] !== shortestWord[i]) return common;
+            if (j === strs.length - 1 && strs[j][i] === shortestWord[i]) common += tmp;
         }
-
-        return common;
     }
 
-    // const strs = ["flower", "flow", "flight"];
-    // console.log(longestCommonPrefix(strs));
+    return common;
+}
 
 
 // 20. Valid Parentheses
-const isValid = (s) => {
+const isValid = s => {
     let stack = []
 
     let p = {
@@ -154,10 +110,6 @@ const isValid = (s) => {
     if (stack.length)return false
     return true
 }
-// const s = "()[]{}";
-// const s = "([)]";
-// const s = "(([]){})";
-// console.log(isValid(s));
 
 
 // 26. Remove Duplicates from Sorted Array
@@ -445,7 +397,7 @@ const hammingWeight = n => n.toString(2).replaceAll("0", "").length;
 
 
 // 914. X of a Kind in a Deck of Cards <= UNFINISHED
-const hasGCF = (arr) => {
+const hasGCF = arr => {
     arr.sort((a, b) => a - b);
 
     for (let i = 2; i < arr[0]; i++) {
@@ -461,7 +413,6 @@ const hasGCF = (arr) => {
 
     return false;
 }
-
 const hasGroupsSizeX = deck => {
     if (deck.length <= 1) return false;
 
@@ -479,17 +430,7 @@ const hasGroupsSizeX = deck => {
 
 
 // 2016. Maximum Difference Between Increasing Elements
-// const maximumDifference = (nums) => {
-//     let max = -1;
-//     for (let i = 0; i < nums.length; i++) {
-//         for (let j = i + 1; j < nums.length; j++) {
-//             if (nums[j] - nums[i] > max && nums[j] - nums[i] > 0) max = nums[j] - nums[i];
-//         }
-//     }
-//     return max;
-// };
-// BETTER SOLUTION:
-const maximumDifference = (nums) => {
+const maximumDifference = nums => {
     let min = Infinity, max = -1;
     for(let i in nums){
         min = Math.min(nums[i], min);
