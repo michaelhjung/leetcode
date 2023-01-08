@@ -66,25 +66,33 @@ function romanToInt(s) {
 
 
 // 14. Longest Common Prefix
-function longestCommonPrefix(strs) {
-    if (strs.length === 1) return strs[0];
-    let common = "";
+// function longestCommonPrefix(strs) {
+//     if (strs.length === 1) return strs[0];
+//     let common = "";
 
-    const shortestWord = strs.reduce((acc, currVal) => {
-        if (currVal.length < acc.length) acc = currVal;
-        return acc;
-    }, strs[0]);
+//     const shortestWord = strs.reduce((acc, currVal) => {
+//         if (currVal.length < acc.length) acc = currVal;
+//         return acc;
+//     }, strs[0]);
 
-    for (let i = 0; i < shortestWord.length; i++) {
-        let tmp = shortestWord[i];
-        for (let j = 0; j < strs.length; j++) {
-            if (strs[j][i] !== shortestWord[i]) return common;
-            if (j === strs.length - 1 && strs[j][i] === shortestWord[i]) common += tmp;
-        }
+//     for (let i = 0; i < shortestWord.length; i++) {
+//         let tmp = shortestWord[i];
+//         for (let j = 0; j < strs.length; j++) {
+//             if (strs[j][i] !== shortestWord[i]) return common;
+//             if (j === strs.length - 1 && strs[j][i] === shortestWord[i]) common += tmp;
+//         }
+//     }
+
+//     return common;
+// }
+// REFACTORED:
+const longestCommonPrefix = strs => {
+    strs.sort();
+    for (let i = 0; i < strs[0].length; i++) {
+        if (strs[0][i] !== strs[strs.length - 1][i]) return strs[0].substring(0, i);
     }
-
-    return common;
-}
+    return strs[0];
+};
 
 
 // 20. Valid Parentheses
@@ -92,22 +100,22 @@ const isValid = s => {
     let stack = []
 
     let p = {
-      ')': '(',
-      ']': '[',
-      '}': '{'
+        ')': '(',
+        ']': '[',
+        '}': '{'
     }
 
     for (let i of s) {
-      if ('([{'.includes(i)) {
-        stack.push(i)
-      } else if (p[i] === stack[stack.length - 1]) {
-        stack.pop()
-      }else{
-        stack.push(i)
-      }
+        if ('([{'.includes(i)) {
+            stack.push(i)
+        } else if (p[i] === stack[stack.length - 1]) {
+            stack.pop()
+        } else {
+            stack.push(i)
+        }
     }
 
-    if (stack.length)return false
+    if (stack.length) return false
     return true
 }
 
@@ -187,7 +195,7 @@ const addBinary = (a, b) => (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 const mySqrt = x => {
     if (x === 0) return 0;
     if (x <= 2) return 1;
-    for (let i = 2; i <= x; i ++) {
+    for (let i = 2; i <= x; i++) {
         if (i ** 2 === x) return i;
         else if (i ** 2 > x) return i - 1;
     }
@@ -282,7 +290,7 @@ const minDepth = root => {
 
 
 // 112. Path Sum
-const hasPathSum = (root, targetSum, currSum=0) => {
+const hasPathSum = (root, targetSum, currSum = 0) => {
     if (!root) return false;
 
     currSum += root.val;
@@ -302,7 +310,7 @@ const generate = numRows => {
     for (let i = 1; i < numRows; i++) {
         const newRow = new Array(res[i - 1].length + 1);
         newRow[0] = 1;
-        newRow[newRow.length-1] = 1;
+        newRow[newRow.length - 1] = 1;
         for (let j = 1; j < res[i - 1].length; j++) {
             newRow[j] = res[i - 1][j - 1] + res[i - 1][j];
         }
@@ -321,7 +329,7 @@ const getRow = rowIndex => {
     for (let i = 1; i < rowIndex + 1; i++) {
         const newRow = new Array(res[i - 1].length + 1);
         newRow[0] = 1;
-        newRow[newRow.length-1] = 1;
+        newRow[newRow.length - 1] = 1;
         for (let j = 1; j < res[i - 1].length; j++) {
             newRow[j] = res[i - 1][j - 1] + res[i - 1][j];
         }
@@ -335,7 +343,7 @@ const getRow = rowIndex => {
 // 136. Single Number
 const singleNumber = nums => {
     if (nums.length === 1) return nums[0];
-    nums.sort((a, b)  => a - b);
+    nums.sort((a, b) => a - b);
     for (let i = 1; i < nums.length; i += 2) {
         if (i === nums.length - 2 && nums[i] === nums[i - 1]) return nums[nums.length - 1];
         else if (nums[i] !== nums[i - 1]) return nums[i - 1];
@@ -432,7 +440,7 @@ const hasGroupsSizeX = deck => {
 // 2016. Maximum Difference Between Increasing Elements
 const maximumDifference = nums => {
     let min = Infinity, max = -1;
-    for(let i in nums){
+    for (let i in nums) {
         min = Math.min(nums[i], min);
         max = Math.max(nums[i] - min, max)
     }
