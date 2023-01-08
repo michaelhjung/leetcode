@@ -202,12 +202,58 @@ const checkSubarraySum = (nums, k) => {
 };
 
 
-// 809. Expressive Words <== UNFINISHED
-const expressiveWords = (s, words) => {
+// 809. Expressive Words
+const expressiveWords = (S, words) => {
+    const isExpressive = (word) => {
+        let wI = 0;
+        let sI = 0;
+
+        while (wI < word.length || sI < S.length) {
+            let countW = 1;
+            let countS = 1;
+
+            if (word[wI] !== S[sI]) return false;
+
+            while (word[wI] === word[wI++ + 1]) countW++;
+            while (S[sI] === S[sI++ + 1]) countS++;
+
+            if (countS < countW || (countS !== countW && countS < 3)) return false;
+        }
+
+        return true;
+    }
+
+    return words.filter(isExpressive).length;
+}
+// // WORK IN PROGRESS ALTERNATIVE WAY:
+// const expressiveWords = (s, words) => {
+//     let res = 0;
+
+//     // step 1: get normalized data of s character counts
+//     const sChars = {};
+//     let sPointer = 1, sCount = 1, currChar = s[0], idx = 0;
+//     while (sPointer < s.length) {
+//         if (s[sPointer] !== currChar) {
+//             sChars[idx] = { val: currChar, count: sCount };
+
+//             // reset:
+//             sCount = 1;
+//             currChar = s[sPointer];
+//             idx++;
+//         } else {
+//             sCount++;
+//         }
+
+//         if (sPointer === s.length - 1) sChars[idx] = { val: currChar, count: sCount };
+
+//         sPointer++;
+//     }
+
+//     // step 2: compare letter counts of each word and don't count any where difference is exactly 1
 
 
-
-};
+//     return res;
+// };
 
 
 // 881. Boats to Save People
