@@ -144,6 +144,29 @@ const multiply = (num1, num2) => {
 
 // ========== DAY 3: Linked List ========== //
 // 19. Remove Nth Node from End of List
+const removeNthFromEnd = (head, n) => {
+    let size = 0;
+    let curr = head;
+    while (curr) {
+        size++;
+        curr = curr.next;
+    }
+
+    if (size === 1) return null;
+    let target = size - n;
+    if (target === 0) return head.next;
+    curr = head;
+    while (target >= 0) {
+        target--;
+        if (target === 0) {
+            curr.next = curr?.next?.next ? curr.next.next : null;
+            break;
+        }
+        curr = curr.next;
+    }
+
+    return head;
+};
 // 234. Palindrome Linked List
 
 
