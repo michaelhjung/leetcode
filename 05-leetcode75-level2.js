@@ -129,7 +129,7 @@ const multiply = (num1, num2) => {
 
         if (String(sumCarry + currSum).length > 2) console.log("AHHH")
         if (String(sumCarry + currSum).length !== 1) {
-            finalanswer = String(sumCarry + currSum)[String(sumCarry+currSum).length - 1] + finalanswer;
+            finalanswer = String(sumCarry + currSum)[String(sumCarry + currSum).length - 1] + finalanswer;
             sumCarry = Number(String(sumCarry + currSum).slice(0, String(sumCarry + currSum).length - 1));
         } else {
             finalanswer = String(sumCarry + currSum) + finalanswer;
@@ -168,6 +168,16 @@ const removeNthFromEnd = (head, n) => {
     return head;
 };
 // 234. Palindrome Linked List
+const isPalindrome = head => {
+    let arr = [];
+    let curr = head;
+    while (curr) {
+        arr.push(curr.val);
+        curr = curr.next;
+    }
+
+    return arr.join("") === arr.reverse().join("");
+};
 
 
 // ========== DAY 4: Linked List ========== //
