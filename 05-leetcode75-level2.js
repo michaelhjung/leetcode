@@ -55,7 +55,7 @@ const findBall = (grid) => {
         let j = start
         for (let i = 0; i < m; i++) {             // Then iterate downward from grid[i][j]
             let dir = grid[i][j]                  // Compare the direction of the current cell to the direction
-            if (dir === grid[i][j+dir]) j += dir  //   of the cell on the slant side and move that way if matched
+            if (dir === grid[i][j + dir]) j += dir  //   of the cell on the slant side and move that way if matched
             else i = m, j = -1                    // Otherwise jump to the loop's end and set j to the fail value
         }
         ans[start] = j                            // Update the answer
@@ -65,7 +65,81 @@ const findBall = (grid) => {
 
 // ========== DAY 2: String ========== //
 // 14. Longest Common Prefix
+const longestCommonPrefix = strs => {
+    strs.sort();
+    for (let i = 0; i < strs[0].length; i++) {
+        if (strs[0][i] !== strs[strs.length - 1][i]) return strs[0].substring(0, i);
+    }
+    return strs[0];
+};
 // 43. Multiply Strings
+// UGLY BUT WORKS SOLUTION:
+const multiply = (num1, num2) => {
+    if (num1 === "0" || num2 === "0") return "0";
+    const helperMult = (n1, n2) => {
+        let sum = 0;
+        for (let i = 0; i < Number(n1); i++) {
+            sum += Number(n2);
+        }
+        return String(sum);
+    }
+
+    let sums = [];
+    for (let i = num2.length - 1; i >= 0; i--) {
+        let res = "";
+        let carry = 0;
+        for (let j = num1.length - 1; j >= 0; j--) {
+            let prod = helperMult(num2[i], num1[j]);
+            prod = String(carry + Number(prod));
+
+            if (j === 0) {
+                res = prod + res;
+                break;
+            }
+
+            if (prod.length === 1) {
+                res = prod + res;
+                carry = 0;
+            } else {
+                res = prod[1] + res;
+                carry = Number(prod[0]);
+            }
+        }
+        sums.push(res);
+    }
+    let zeros = "0";
+    for (let i = 1; i < sums.length; i++) {
+        sums[i] += zeros;
+        zeros += "0";
+    }
+
+    const longest = sums[sums.length - 1];
+    const newSums = sums.map(s => s.padStart(longest.length, '0'));
+
+    let finalanswer = "";
+    let sumCarry = 0;
+    for (let k = longest.length - 1; k >= 0; k--) {
+        let currSum = 0;
+        newSums.forEach(s => currSum += Number(s[k]));
+
+        if (k === 0) {
+            finalanswer = String(sumCarry + currSum) + finalanswer;
+            break;
+        }
+
+        if (String(sumCarry + currSum).length > 2) console.log("AHHH")
+        if (String(sumCarry + currSum).length !== 1) {
+            finalanswer = String(sumCarry + currSum)[String(sumCarry+currSum).length - 1] + finalanswer;
+            sumCarry = Number(String(sumCarry + currSum).slice(0, String(sumCarry + currSum).length - 1));
+        } else {
+            finalanswer = String(sumCarry + currSum) + finalanswer;
+            sumCarry = 0;
+        }
+    }
+    return finalanswer;
+};
+// console.log(multiply("123456789", "987654321"));
+// console.log(multiply("401716832807512840963", "167141802233061013023557397451289113296441069"));
 
 
 // ========== DAY 3: Linked List ========== //
