@@ -181,7 +181,21 @@ const isPalindrome = head => {
 
 
 // ========== DAY 4: Linked List ========== //
-// 328. Odd Even Linked FileList
+// 328. Odd Even Linked List
+const oddEvenList = head => {
+    if (!head) return null;
+    let odd = head, even = head.next, evenHead = even;
+
+    while (even && even.next) {
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next;
+    }
+
+    odd.next = evenHead;
+    return head;
+};
 // 148. Sort List
 
 
