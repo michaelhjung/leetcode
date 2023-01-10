@@ -197,6 +197,26 @@ const oddEvenList = head => {
     return head;
 };
 // 148. Sort List
+const sortList = head => {
+    if (!head) return null;
+    let curr = head;
+    const list = [];
+    while (curr) {
+        list.push(curr.val);
+        curr = curr.next;
+    }
+
+    list.sort((a, b) => a - b);
+    curr = head;
+    let pointer = 0;
+    while (curr) {
+        curr.val = list[pointer];
+        curr = curr.next;
+        pointer++;
+    }
+
+    return head;
+};
 
 
 // ========== DAY 5: Greedy ========== //
