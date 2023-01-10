@@ -221,6 +221,41 @@ const sortList = head => {
 
 // ========== DAY 5: Greedy ========== //
 // 2131. Longest Palindrome by Concatenating Two Letter Words
+const longestPalindrome = words => {
+    let finalLength = 0;
+    const doubles = {};
+    let maxOddDouble = 0;
+    const pals = {};
+
+    for (let word of words) {
+        const reverseWord = `${word[1]}${word[0]}`;
+        if (reverseWord === word) {
+            if (doubles[word]) doubles[word]++;
+            else doubles[word] = 1;
+        } else {
+            if (pals[reverseWord] > 0) {
+                pals[reverseWord]--;
+                finalLength += 4;
+            }
+            else if (!pals[reverseWord] && pals[word]) pals[word]++;
+            else if (!pals[reverseWord] && !pals[word]) pals[word] = 1;
+        }
+    }
+
+    const doublesCounts = Object.values(doubles);
+    doublesCounts.forEach(count => {
+        if (count % 2 === 0) {
+            finalLength += (2 * count);
+        } else if (count % 2 !== 0) {
+            if (count > maxOddDouble) maxOddDouble = count;
+            finalLength += (count - 1) * 2;
+        }
+    });
+
+    if (maxOddDouble > 0) finalLength += 2;
+
+    return finalLength;
+};
 // 621. Task Scheduler
 
 
