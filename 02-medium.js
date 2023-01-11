@@ -27,6 +27,23 @@ const addTwoNumbers = (l1, l2) => {
 };
 
 
+// 11. Container with Most Water
+const maxArea = height => {
+    let left = 0, right = height.length - 1, area = 0;
+
+    while (left < right) {
+        const currHeight = Math.min(height[left], height[right]);
+        const currWidth = right - left;
+        const currArea = currHeight * currWidth;
+        area = Math.max(currArea, area);
+        if (height[left] < height[right]) left++;
+        else right--;
+    }
+
+    return area;
+};
+
+
 // 15. 3Sum
 const threeSum = nums => {
     const res = [];
