@@ -733,6 +733,26 @@ const combinationSum = (candidates, target) => {
 };
 // Permutations
 // *Merge Intervals*
+const merge = intervals => {
+    intervals.sort((a, b) => {
+        if (a[0] < b[0]) return -1;
+        if (a[0] > b[0]) return 1;
+        if (a[1] < b[1]) return -1;
+        if (a[1] > b[1]) return 1;
+    });
+    let newIntervals = [intervals[0]];
+    for (let i = 1; i < intervals.length; i++) {
+        let top = newIntervals[newIntervals.length - 1];
+        if (intervals[i][0] <= top[1]) {
+            top = [top[0], Math.max(top[1], intervals[i][1])];
+            newIntervals.pop();
+            newIntervals.push(top);
+        }
+        else newIntervals.push(intervals[i]);
+    }
+
+    return newIntervals;
+};
 // *Lowest Common Ancestor of a Binary Tree
 // Time Based Key-Value Store
 // Accounts Merge
